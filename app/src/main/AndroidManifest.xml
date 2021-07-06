@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.taptapmatching">
-
-    <!-- 인터넷 사용 권한 설정-->
+    <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,11 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TapTapMatching">
-        android:name="KakaoApplication">
+        <activity
+            android:name=".Button1Activity"
+            android:label="@string/title_activity_button1"
+            android:theme="@style/Theme.TapTapMatching.NoActionBar"></activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="kakao2aaa5254b7023a6ff0cd23ee1a5a4dbc"/>
+            android:value="kakao2aaa5254b7023a6ff0cd23ee1a5a4dbc" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -25,18 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Button1Activity"/>
     </application>
-
-<!--    <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">-->
-<!--        <intent-filter>-->
-<!--            <action android:name="android.intent.action.VIEW" />-->
-<!--            <category android:name="android.intent.category.DEFAULT" />-->
-<!--            <category android:name="android.intent.category.BROWSABLE" />-->
-
-<!--            &lt;!&ndash; Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" &ndash;&gt;-->
-<!--            <data android:host="oauth"-->
-<!--                android:scheme="kakao2aaa5254b7023a6ff0cd23ee1a5a4dbc" />-->
-<!--        </intent-filter>-->
-<!--    </activity>-->
 
 </manifest>
