@@ -7,24 +7,24 @@
     tools:context=".Button1Activity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/to2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="용병 모집"
+        android:text="to2"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintDimensionRatio="w,3:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintStart_toEndOf="@+id/to1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/to1"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="팀 매치"
+        android:text="to1"
         app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/to2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/to2" />
 
     <Button
         android:id="@+id/button6"
@@ -49,5 +49,5 @@
         app:layout_constraintEnd_toStartOf="@+id/button7"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintTop_toBottomOf="@+id/to1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

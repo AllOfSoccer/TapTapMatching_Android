@@ -35,7 +35,7 @@
         android:layout_marginStart="163dp"
         android:layout_marginEnd="154dp"
         android:layout_marginBottom="6dp"
-        android:text="Button"
+        android:text="button2"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,7 +47,7 @@
         android:layout_marginStart="163dp"
         android:layout_marginEnd="154dp"
         android:layout_marginBottom="10dp"
-        android:text="Button"
+        android:text="button1"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
