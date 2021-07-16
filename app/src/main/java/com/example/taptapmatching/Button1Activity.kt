@@ -1,5 +1,6 @@
 package com.example.taptapmatching
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,13 @@ class Button1Activity : AppCompatActivity() {
 
         binding.to1.text = intent.getStringExtra("from1")
         binding.to2.text = "${intent.getIntExtra("from2", 0)}"
+
+        binding.to1.setOnClickListener {
+            val returnIntent = Intent()
+            returnIntent.putExtra("returnValue", binding.editMessage.text.toString())
+            setResult(RESULT_OK, returnIntent) //setResult 메소드에 담아서 실행 --> 호출한측으로 전달.
+            finish() // 서브 액티비티가 종료된다.
+        }
 
         Toast.makeText(this, "button1", Toast.LENGTH_SHORT).show()
     }

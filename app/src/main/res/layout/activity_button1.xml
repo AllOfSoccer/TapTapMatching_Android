@@ -22,7 +22,7 @@
         android:id="@+id/to1"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="to1"
+        android:text="액티비티 닫기"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toStartOf="@+id/to2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,4 +50,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/to1" />
+
+    <EditText
+        android:id="@+id/editMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="전달할 메세지를 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/to1"
+        app:layout_constraintTop_toBottomOf="@+id/to2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
