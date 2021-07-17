@@ -28,8 +28,10 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, 99)
         }
 
+        val intent2 = Intent(this, ButtonActivity2::class.java)
+
         binding.button2.setOnClickListener {
-            Toast.makeText(this, "button2", Toast.LENGTH_SHORT).show()
+            startActivityForResult(intent2, 98)
         }
 
         binding.button3.setOnClickListener {
