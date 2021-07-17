@@ -34,8 +34,10 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent2, 98)
         }
 
+        val intent3 = Intent(this, RecyclerViewActivity::class.java)
+
         binding.button3.setOnClickListener {
-            Toast.makeText(this, "button3", Toast.LENGTH_SHORT).show()
+            startActivityForResult(intent3, 97)
         }
     }
 
