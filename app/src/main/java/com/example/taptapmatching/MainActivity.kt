@@ -39,6 +39,12 @@ class MainActivity : AppCompatActivity() {
         binding.button3.setOnClickListener {
             startActivityForResult(intent3, 97)
         }
+
+        val mathchingListIntent = Intent(this, MatchingListView::class.java)
+
+        binding.matchingListButton.setOnClickListener {
+            startActivityForResult(mathchingListIntent, 96)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
