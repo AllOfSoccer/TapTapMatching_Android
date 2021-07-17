@@ -1,15 +1,21 @@
 package com.example.taptapmatching
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.databinding.ItemRecyclerBinding
 import com.example.taptapmatching.databinding.SmallcalendarRecyclerBinding
+import java.lang.Exception
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 data class SmallDate(var weakDate: String, var weakDay: String)
 
@@ -31,9 +37,11 @@ class MatchingListView : AppCompatActivity() {
     fun loadData(): MutableList<SmallDate> {
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
 
-        for (no in 1..100) {
-            val date = System.currentTimeMillis()
-            var smallDate = SmallDate("월", "7")
+        for (no in 0..1000) {
+            val tomorrow = LocalDate.now().plusDays(no.toLong())
+            val abc = tomorrow.dayOfWeek.toKorean()
+            val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("dd"))
+            var smallDate = SmallDate("${abc}", "${formattedTomorrow}")
             data.add(smallDate)
         }
 
@@ -66,6 +74,25 @@ class MatchingListView : AppCompatActivity() {
             binding.weakDate.text = smallDate.weakDate
             binding.weakDay.text = smallDate.weakDay
         }
+    }
+}
+
+fun DayOfWeek.toKorean() : String {
+    val temp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        this.value
+    } else {
+        throw Exception("fuck")
+    }
+
+    return when(temp){
+        DayOfWeek.SATURDAY.value -> "토"
+        DayOfWeek.SUNDAY.value -> "일"
+        DayOfWeek.MONDAY.value -> "월"
+        DayOfWeek.TUESDAY.value -> "화"
+        DayOfWeek.WEDNESDAY.value -> "수"
+        DayOfWeek.THURSDAY.value -> "목"
+        DayOfWeek.FRIDAY.value -> "금"
+        else -> "x"
     }
 }
 
