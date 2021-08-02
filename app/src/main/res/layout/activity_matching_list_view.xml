@@ -85,15 +85,13 @@
         app:layout_constraintStart_toEndOf="@+id/month"
         app:layout_constraintTop_toTopOf="@+id/month" />
 
-    <FrameLayout
-        android:id="@+id/filterFrameLayout"
-        android:layout_width="390dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filterRecyclerView"
+        android:layout_width="409dp"
         android:layout_height="45dp"
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
