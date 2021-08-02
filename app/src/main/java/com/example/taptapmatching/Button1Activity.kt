@@ -1,11 +1,9 @@
 package com.example.taptapmatching
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.taptapmatching.databinding.ActivityButton1Binding
 
 class Button1Activity : AppCompatActivity() {
@@ -16,6 +14,7 @@ class Button1Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
+//        setContentView(R.layout.activity_button1)
 
         binding.to1.text = intent.getStringExtra("from1")
         binding.to2.text = "${intent.getIntExtra("from2", 0)}"

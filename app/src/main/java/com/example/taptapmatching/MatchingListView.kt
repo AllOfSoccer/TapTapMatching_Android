@@ -1,23 +1,23 @@
 package com.example.taptapmatching
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
-import com.example.taptapmatching.databinding.ItemRecyclerBinding
 import com.example.taptapmatching.databinding.SmallcalendarRecyclerBinding
-import java.lang.Exception
-import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 data class SmallDate(var weakDate: String, var weakDay: String)
+data class SmallFilter(var title: String, var isSelected: Boolean)
 
 class MatchingListView : AppCompatActivity() {
 
@@ -25,13 +25,22 @@ class MatchingListView : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(binding.root)
+        setFragment()
 
         val data: MutableList<SmallDate> = loadData()
         var adapter = MatchingListView.CustomAdapter()
         adapter.listData = data
         binding.smallCalendarRecyclerView.adapter = adapter
         binding.smallCalendarRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    fun setFragment() {
+        val listFragment: smallFilteringFragment = smallFilteringFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.frameLayout, listFragment)
+        transaction.commit()
     }
 
     fun loadData(): MutableList<SmallDate> {
@@ -70,10 +79,18 @@ class MatchingListView : AppCompatActivity() {
     }
 
     class Holder(val binding: SmallcalendarRecyclerBinding): RecyclerView.ViewHolder(binding.root) {
+
         fun setMemo(smallDate: SmallDate) {
             binding.weakDate.text = smallDate.weakDate
             binding.weakDay.text = smallDate.weakDay
         }
+
+        init {
+            binding.root.setOnClickListener {
+                Toast.makeText(binding.root.context, "클릭된 아이템 = ${binding.weakDate.text}", Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 }
 
@@ -81,7 +98,7 @@ fun DayOfWeek.toKorean() : String {
     val temp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         this.value
     } else {
-        throw Exception("fuck")
+        throw Exception("예외 ㅠㅠ")
     }
 
     return when(temp){
