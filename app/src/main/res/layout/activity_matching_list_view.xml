@@ -8,12 +8,12 @@
     tools:context=".MatchingListView">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/teamButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:text="팀 매치"
@@ -22,47 +22,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/mercenaryButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         android:text="용병 모집"
         android:textColor="#333333"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/teamButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
         android:text="6월"
         android:textColor="#040303"
-        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/teamButton"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="84dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="5dp"
-        android:background="#EC5F5F"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <View
         android:id="@+id/view3"
         android:layout_width="85dp"
         android:layout_height="3dp"
-        android:layout_marginTop="5dp"
         android:background="#EC5F5F"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/teamButton"
+        app:layout_constraintStart_toStartOf="@+id/teamButton"
+        app:layout_constraintTop_toBottomOf="@+id/teamButton" />
 
     <View
         android:id="@+id/view"
@@ -79,6 +67,7 @@
         android:layout_width="288dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/month"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +78,7 @@
         android:id="@+id/filterRecyclerView"
         android:layout_width="409dp"
         android:layout_height="45dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
