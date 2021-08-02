@@ -16,7 +16,7 @@ public class MatchingCalendarRecycler {
     fun loadData(): MutableList<SmallDate> {
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
 
-        for (no in 0..1000) {
+        for (no in 0..99) {
             val tomorrow = LocalDate.now().plusDays(no.toLong())
             val abc = tomorrow.dayOfWeek.toKorean()
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("dd"))

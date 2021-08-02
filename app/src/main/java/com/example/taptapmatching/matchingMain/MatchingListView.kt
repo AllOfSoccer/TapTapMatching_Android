@@ -65,7 +65,21 @@ class MatchingListView : AppCompatActivity() {
         var adapter = MatchingCalendarRecycler.CustomAdapter()
         adapter.listData = data
         binding.smallCalendarRecyclerView.adapter = adapter
-        binding.smallCalendarRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.smallCalendarRecyclerView.layoutManager = layoutManager
+
+        val scrollListener = object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                val totalItemCount = layoutManager.getItemCount()
+                val firstVisible = layoutManager.findFirstVisibleItemPosition()
+
+                Log.d("onScrollStateChanged", "첫번째 보이는 position 값: ${firstVisible}")
+            }
+        }
+        binding.smallCalendarRecyclerView.addOnScrollListener(scrollListener)
     }
 
     fun setupFilterRecycler() {
