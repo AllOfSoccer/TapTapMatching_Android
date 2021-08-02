@@ -34,12 +34,13 @@ class MatchingListView : AppCompatActivity() {
         adapter.listData = data
         binding.smallCalendarRecyclerView.adapter = adapter
         binding.smallCalendarRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
     }
 
     fun setFragment() {
         val listFragment: smallFilteringFragment = smallFilteringFragment()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.frameLayout, listFragment)
+        transaction.add(R.id.filterFrameLayout, listFragment)
         transaction.commit()
     }
 
