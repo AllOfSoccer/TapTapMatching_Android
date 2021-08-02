@@ -2,16 +2,15 @@ package com.example.taptapmatching
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.databinding.SmallcalendarRecyclerBinding
+import com.example.taptapmatching.matchingFilter.smallFilteringFragment
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

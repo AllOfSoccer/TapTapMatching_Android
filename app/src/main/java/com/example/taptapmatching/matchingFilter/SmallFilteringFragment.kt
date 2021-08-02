@@ -1,11 +1,10 @@
-package com.example.taptapmatching
+package com.example.taptapmatching.matchingFilter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
 
@@ -39,14 +38,14 @@ class smallFilteringFragment : Fragment() {
         return data
     }
 
-    class CustomAdapter: RecyclerView.Adapter<smallFilteringFragment.Holder>() {
+    class CustomAdapter: RecyclerView.Adapter<Holder>() {
 
         var listData = mutableListOf<FilterInfo>()
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): smallFilteringFragment.Holder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val binding = FragmentSmallFilteringBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)
-            return smallFilteringFragment.Holder(binding)
+            return Holder(binding)
         }
 
         override fun getItemCount(): Int {
@@ -54,7 +53,7 @@ class smallFilteringFragment : Fragment() {
         }
 
         //생성된 뷰 홀더를 화면에 보여줌
-        override fun onBindViewHolder(holder: smallFilteringFragment.Holder, position: Int) {
+        override fun onBindViewHolder(holder: Holder, position: Int) {
             val memo = listData.get(position)
             holder.setMemo(memo)
         }
