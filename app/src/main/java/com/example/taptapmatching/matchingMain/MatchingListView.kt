@@ -1,10 +1,12 @@
 package com.example.taptapmatching
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,13 +27,37 @@ class MatchingListView : AppCompatActivity() {
     var calendarRecycler = MatchingCalendarRecycler()
     var filterRecycler = MatchingFilterRecycler()
 
+    var currentMatchType: MatchType = MatchType.TEAM
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(binding.root)
+        this.setContentView(binding.root)
 
         this.setupCalendarRecylcer()
         this.setupFilterRecycler()
+
+        this.setupButtonListener()
+    }
+
+    fun setupButtonListener() {
+        binding.teamButton.setOnClickListener {
+            this.currentMatchType = MatchType.TEAM
+            it.isSelected = !it.isSelected
+
+            Log.d("ddd","teamButtonTapped")
+
+            binding.matchHighlightView.setBackgroundColor(Color.BLUE)
+        }
+
+        binding.mercenaryButton.setOnClickListener {
+            this.currentMatchType = MatchType.MERCENARY
+            it.isSelected = !it.isSelected
+
+            Log.d("ddd","mercenaryButtonTapped")
+
+            binding.matchHighlightView.setBackgroundColor(Color.BLUE)
+        }
     }
 
     fun setupCalendarRecylcer() {
@@ -50,6 +76,12 @@ class MatchingListView : AppCompatActivity() {
         binding.filterRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 }
+
+enum class MatchType {
+    TEAM,
+    MERCENARY
+}
+
 
 
 
