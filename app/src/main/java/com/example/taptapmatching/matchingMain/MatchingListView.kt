@@ -20,6 +20,11 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+enum class MatchType {
+    TEAM,
+    MERCENARY
+}
+
 class MatchingListView : AppCompatActivity() {
 
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
@@ -76,7 +81,10 @@ class MatchingListView : AppCompatActivity() {
                 val totalItemCount = layoutManager.getItemCount()
                 val firstVisible = layoutManager.findFirstVisibleItemPosition()
 
-                Log.d("onScrollStateChanged", "첫번째 보이는 position 값: ${firstVisible}")
+                val month = data[firstVisible].date.format(DateTimeFormatter.ofPattern("M월"))
+                binding.month.text = month
+
+                Log.d("onScrollStateChanged", "첫번째 보이는 position 값: ${month}")
             }
         }
         binding.smallCalendarRecyclerView.addOnScrollListener(scrollListener)
@@ -89,11 +97,6 @@ class MatchingListView : AppCompatActivity() {
         binding.filterRecyclerView.adapter = adapter2
         binding.filterRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
-}
-
-enum class MatchType {
-    TEAM,
-    MERCENARY
 }
 
 

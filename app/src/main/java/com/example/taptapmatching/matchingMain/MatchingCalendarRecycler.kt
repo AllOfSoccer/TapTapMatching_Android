@@ -11,7 +11,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 public class MatchingCalendarRecycler {
-    data class SmallDate(var weakDate: String, var weakDay: String)
+    data class SmallDate(var weakDate: String, var weakDay: String, var date: LocalDate)
 
     fun loadData(): MutableList<SmallDate> {
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
@@ -20,7 +20,7 @@ public class MatchingCalendarRecycler {
             val tomorrow = LocalDate.now().plusDays(no.toLong())
             val abc = tomorrow.dayOfWeek.toKorean()
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("dd"))
-            var smallDate = SmallDate("${abc}", "${formattedTomorrow}")
+            var smallDate = SmallDate("${abc}", "${formattedTomorrow}", tomorrow)
             data.add(smallDate)
         }
 
