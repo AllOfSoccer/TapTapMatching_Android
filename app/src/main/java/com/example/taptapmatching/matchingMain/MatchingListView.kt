@@ -77,12 +77,11 @@ class MatchingListView : AppCompatActivity() {
 
                 val month = data[firstVisible].date.format(DateTimeFormatter.ofPattern("M월"))
                 binding.month.text = month
-
-                Log.d("onScrollStateChanged", "${month}")
             }
         }
         binding.smallCalendarRecyclerView.addOnScrollListener(scrollListener)
 
+        //초기 월 세팅.
         val month = data[0].date.format(DateTimeFormatter.ofPattern("M월"))
         binding.month.text = month
     }
