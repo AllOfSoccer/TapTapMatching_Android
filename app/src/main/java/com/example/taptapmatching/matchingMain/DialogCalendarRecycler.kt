@@ -15,7 +15,42 @@ public class DialogCalendarRecycler {
 
     fun loadData(): MutableList<SmallDate> {
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
-        return this.getCurrentMonthDate()
+        return this.getNextMonthDate(1)
+    }
+
+    fun getNextMonthDate(nextMonth: Long): MutableList<SmallDate> {
+        val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
+
+        val today = LocalDate.now().plusMonths(nextMonth)
+        val formattedToday = today.format(DateTimeFormatter.ofPattern("d")).toInt()-1
+
+        for (no in -formattedToday..0) {
+            val tomorrow = LocalDate.now().plusMonths(nextMonth).plusDays(no.toLong())
+            val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
+            var smallDate = SmallDate("${formattedTomorrow}", tomorrow)
+            data.add(smallDate)
+        }
+
+        var currentDay: Int = 0
+
+        for (no in 0..31) {
+            val tomorrow = LocalDate.now().plusMonths(nextMonth).plusDays(no.toLong())
+            val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
+            var smallDate = SmallDate("${formattedTomorrow}", tomorrow)
+
+            val tempDay = formattedTomorrow.toInt()
+
+            if (tempDay > currentDay) {
+                Log.d("dateTest", "${tempDay}, ${currentDay}")
+                data.add(smallDate)
+            } else {
+                break
+            }
+
+            currentDay = tempDay
+        }
+
+        return data
     }
 
     fun getCurrentMonthDate(): MutableList<SmallDate> {
