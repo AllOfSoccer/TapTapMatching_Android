@@ -39,29 +39,30 @@ class MatchingListView : AppCompatActivity() {
 
         this.setContentView(binding.root)
 
+        this.setupMonthListener()
+
         this.setupCalendarRecylcer()
         this.setupFilterRecycler()
 
         this.setupButtonListener()
     }
 
+    fun setupMonthListener() {
+        binding.month.setOnClickListener {
+            //프래그먼트를 만들자.
+            Log.d("binding.month.setOnClickListener", "binding.month.setOnClickListener")
+        }
+    }
+
     fun setupButtonListener() {
         binding.teamButton.setOnClickListener {
             this.currentMatchType = MatchType.TEAM
             it.isSelected = !it.isSelected
-
-            Log.d("ddd","teamButtonTapped")
-
-            binding.matchHighlightView.setBackgroundColor(Color.BLUE)
         }
 
         binding.mercenaryButton.setOnClickListener {
             this.currentMatchType = MatchType.MERCENARY
             it.isSelected = !it.isSelected
-
-            Log.d("ddd","mercenaryButtonTapped")
-
-            binding.matchHighlightView.setBackgroundColor(Color.BLUE)
         }
     }
 
@@ -84,10 +85,13 @@ class MatchingListView : AppCompatActivity() {
                 val month = data[firstVisible].date.format(DateTimeFormatter.ofPattern("M월"))
                 binding.month.text = month
 
-                Log.d("onScrollStateChanged", "첫번째 보이는 position 값: ${month}")
+                Log.d("onScrollStateChanged", "${month}")
             }
         }
         binding.smallCalendarRecyclerView.addOnScrollListener(scrollListener)
+
+        val month = data[0].date.format(DateTimeFormatter.ofPattern("M월"))
+        binding.month.text = month
     }
 
     fun setupFilterRecycler() {
