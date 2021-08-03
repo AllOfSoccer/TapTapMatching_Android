@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taptapmatching.MatchingListView
 import com.example.taptapmatching.databinding.DialogCalendarLayoutBinding
 import com.example.taptapmatching.databinding.SmallcalendarRecyclerBinding
 import java.time.LocalDate
@@ -58,13 +59,13 @@ public class DialogCalendarRecycler {
         var listData = mutableListOf<SmallDate>()
         var storeListData = mutableSetOf<LocalDate>()
 
+        public var delegate: CalendarDialogDelegate? = null
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val binding = DialogCalendarLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false)
 
-            val width = parent.measuredWidth
-            binding.dialogRecyclerView
             return Holder(binding)
         }
 
@@ -78,6 +79,7 @@ public class DialogCalendarRecycler {
 
             holder.binding.root.setOnClickListener {
                 storeListData.add(currentDate.date)
+                this.delegate?.didSelect(storeListData)
                 Toast.makeText(holder.binding.root.context, "${storeListData}", Toast.LENGTH_LONG).show()
             }
         }

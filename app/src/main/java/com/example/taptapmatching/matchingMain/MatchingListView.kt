@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
+import com.example.taptapmatching.matchingMain.CalendarDialogDelegate
 import com.example.taptapmatching.matchingMain.CalendarSelectFragment
 import com.example.taptapmatching.matchingMain.MatchingCalendarRecycler
 import com.example.taptapmatching.matchingMain.MatchingFilterRecycler
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 
@@ -38,6 +40,12 @@ class MatchingListView : AppCompatActivity() {
         this.setupFilterRecycler()
 
         this.setupButtonListener()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Log.d("lifeCycle", "onDestory")
     }
 
     fun setupMonthListener() {
@@ -93,6 +101,7 @@ class MatchingListView : AppCompatActivity() {
         binding.filterRecyclerView.adapter = adapter2
         binding.filterRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
+
 }
 
 
