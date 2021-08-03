@@ -103,5 +103,12 @@
                 android:text="일" />
         </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dialogRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="182dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal" />
+
     </FrameLayout>
 </FrameLayout>

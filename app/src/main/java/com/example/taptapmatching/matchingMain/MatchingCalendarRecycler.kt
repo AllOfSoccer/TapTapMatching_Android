@@ -10,6 +10,25 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+fun DayOfWeek.toKorean() : String {
+    val temp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        this.value
+    } else {
+        throw Exception("예외 ㅠㅠ")
+    }
+
+    return when(temp){
+        DayOfWeek.SATURDAY.value -> "토"
+        DayOfWeek.SUNDAY.value -> "일"
+        DayOfWeek.MONDAY.value -> "월"
+        DayOfWeek.TUESDAY.value -> "화"
+        DayOfWeek.WEDNESDAY.value -> "수"
+        DayOfWeek.THURSDAY.value -> "목"
+        DayOfWeek.FRIDAY.value -> "금"
+        else -> "x"
+    }
+}
+
 public class MatchingCalendarRecycler {
     data class SmallDate(var weakDate: String, var weakDay: String, var date: LocalDate)
 
@@ -60,24 +79,5 @@ public class MatchingCalendarRecycler {
                 Toast.makeText(binding.root.context, "클릭된 아이템 = ${binding.weakDate.text}", Toast.LENGTH_LONG).show()
             }
         }
-    }
-}
-
-fun DayOfWeek.toKorean() : String {
-    val temp = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        this.value
-    } else {
-        throw Exception("예외 ㅠㅠ")
-    }
-
-    return when(temp){
-        DayOfWeek.SATURDAY.value -> "토"
-        DayOfWeek.SUNDAY.value -> "일"
-        DayOfWeek.MONDAY.value -> "월"
-        DayOfWeek.TUESDAY.value -> "화"
-        DayOfWeek.WEDNESDAY.value -> "수"
-        DayOfWeek.THURSDAY.value -> "목"
-        DayOfWeek.FRIDAY.value -> "금"
-        else -> "x"
     }
 }
