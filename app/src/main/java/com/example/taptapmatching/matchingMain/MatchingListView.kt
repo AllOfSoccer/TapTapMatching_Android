@@ -22,6 +22,7 @@ enum class MatchType {
 
 class MatchingListView : AppCompatActivity() {
 
+    var selectedDates: MutableSet<LocalDate> = mutableSetOf()
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
 
     var calendarRecycler = MatchingCalendarRecycler()

@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.taptapmatching.MatchingListView
 import com.example.taptapmatching.R
 import com.example.taptapmatching.databinding.FragmentCalendarSelectBinding
 import java.time.LocalDate
@@ -18,6 +19,7 @@ import java.time.LocalDate
 interface CalendarDialogDelegate {
     fun didSelect(dates: MutableSet<LocalDate>)
 }
+
 class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
 
     private var _binding: FragmentCalendarSelectBinding? = null
@@ -47,8 +49,39 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         binding.dialogRecyclerView.layoutManager = grid
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        Log.d("didSelect", "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        Log.d("didSelect", "onStop")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        Log.d("didSelect", "onDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val currentActivity = this.activity
+
+        if (currentActivity is MatchingListView) {
+            currentActivity.selectedDates = this.selectedDates
+            Log.d("didSelect", "aaaa ${this.selectedDates}")
+        }
+    }
+
+    var selectedDates: MutableSet<LocalDate> = mutableSetOf()
+
     override fun didSelect(dates: MutableSet<LocalDate>) {
+        selectedDates = dates
         Log.d("didSelect", "dates ${dates}")
-        // 받은 데이터를 프래그먼트에서 activity로 전달
     }
 }
