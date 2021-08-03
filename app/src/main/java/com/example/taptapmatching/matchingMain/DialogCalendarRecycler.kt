@@ -1,5 +1,6 @@
 package com.example.taptapmatching.matchingMain
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -14,14 +15,39 @@ public class DialogCalendarRecycler {
 
     fun loadData(): MutableList<SmallDate> {
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
+        return this.getCurrentMonthDate()
+    }
 
-        for (no in 0..48) {
-            val numberOfRow: Int = (no % 7)
-            val number = (no / 7) + (numberOfRow * 7)
-            val tomorrow = LocalDate.now().plusDays(number.toLong())
+    fun getCurrentMonthDate(): MutableList<SmallDate> {
+        val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
+
+        val today = LocalDate.now().plusDays(0)
+        val formattedToday = today.format(DateTimeFormatter.ofPattern("d")).toInt()-1
+
+        for (no in -formattedToday..0) {
+            val tomorrow = LocalDate.now().plusDays(no.toLong())
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
             var smallDate = SmallDate("${formattedTomorrow}", tomorrow)
             data.add(smallDate)
+        }
+
+        var currentDay: Int = 0
+
+        for (no in 0..31) {
+            val tomorrow = LocalDate.now().plusDays(no.toLong())
+            val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
+            var smallDate = SmallDate("${formattedTomorrow}", tomorrow)
+
+            val tempDay = formattedTomorrow.toInt()
+
+            if (tempDay > currentDay) {
+                Log.d("dateTest", "${tempDay}, ${currentDay}")
+                data.add(smallDate)
+            } else {
+                break
+            }
+
+            currentDay = tempDay
         }
 
         return data

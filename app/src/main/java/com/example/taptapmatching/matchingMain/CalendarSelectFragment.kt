@@ -36,8 +36,7 @@ class CalendarSelectFragment : DialogFragment() {
 
         binding.dialogRecyclerView.adapter = adapter
 
-        //val grid = GridLayoutManager(activity, 7, LinearLayoutManager.HORIZONTAL, false)
-        val staggerd = StaggeredGridLayoutManager(7, LinearLayoutManager.HORIZONTAL)
-        binding.dialogRecyclerView.layoutManager = staggerd
+        val grid = GridLayoutManager(activity, 6)
+        binding.dialogRecyclerView.layoutManager = grid
     }
 }
