@@ -15,6 +15,8 @@ interface  DetailFilteringRecyclerDelegate {
 
 class DetailFilteringRecycler {
 
+    var type: MatchingFilterRecycler.FilterType? = null
+
     fun loadData(): MutableList<String> {
         var result: MutableList<String> = mutableListOf() // 컬렉션을 선언
 

@@ -39,6 +39,7 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
         val data: MutableList<String> = filterRecycler.loadData()
         var adapter = DetailFilteringRecycler.CustomAdapter()
         adapter.listData = data
+        filterRecycler.type = this.type
 
         binding.recyclerView2.adapter = adapter
         binding.recyclerView2.layoutManager = GridLayoutManager(activity, 3, LinearLayoutManager.HORIZONTAL, false)
