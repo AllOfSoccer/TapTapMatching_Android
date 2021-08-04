@@ -49,18 +49,6 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         binding.dialogRecyclerView.layoutManager = grid
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        Log.d("didSelect", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        Log.d("didSelect", "onStop")
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
 

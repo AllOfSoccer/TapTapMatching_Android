@@ -3,12 +3,17 @@ package com.example.taptapmatching.matchingMain
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
 
+interface  MatchingFilterRecyclerDelegate {
+    fun didSelectFilterType(type: MatchingFilterRecycler.FilterType)
+}
+
 class MatchingFilterRecycler {
 
-    enum class FilterType(val title: String) {
+    public enum class FilterType(val title: String) {
         LOCATION("장소"),
         TIME("시간대"),
         MATCH("경기"),
@@ -38,12 +43,16 @@ class MatchingFilterRecycler {
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
 
         var listData = mutableListOf<FilterInfo>()
+        var delegate: MatchingFilterRecyclerDelegate? = null
 
         // 한 화면에 그려지는 아이템 개수만큼 레이아웃 생
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val binding = FragmentSmallFilteringBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false)
+
+            delegate = parent.context as MatchingFilterRecyclerDelegate
+
             return Holder(binding)
         }
 
@@ -56,17 +65,10 @@ class MatchingFilterRecycler {
         override fun onBindViewHolder(holder: Holder, position: Int) {
             val memo = listData.get(position)
             holder.setMemo(memo)
-        }
-    }
 
-    class Holder(val binding: FragmentSmallFilteringBinding): RecyclerView.ViewHolder(binding.root) {
-        // binding을 생성 시점에 전달받아 해당 바인딩에 있는 데이터를 세팅
-        fun setMemo(filterInfo: FilterInfo) {
-            binding.textView5.text = "${filterInfo.title}"
-
-            binding.textView5.setOnClickListener {
-                val pos = getAdapterPosition()
-                Log.d("binding.textView5.setOnClickListener", "${getFilterType(pos)}")
+            holder.binding.textView5.setOnClickListener {
+                val pos = holder.getAdapterPosition()
+                this.delegate?.didSelectFilterType(getFilterType(pos))
             }
         }
 
@@ -78,6 +80,13 @@ class MatchingFilterRecycler {
             4 -> FilterType.LEVEL
             5 -> FilterType.TEMP
             else -> FilterType.TEMP
+        }
+    }
+
+    class Holder(val binding: FragmentSmallFilteringBinding): RecyclerView.ViewHolder(binding.root) {
+        // binding을 생성 시점에 전달받아 해당 바인딩에 있는 데이터를 세팅
+        fun setMemo(filterInfo: FilterInfo) {
+            binding.textView5.text = "${filterInfo.title}"
         }
 
     }

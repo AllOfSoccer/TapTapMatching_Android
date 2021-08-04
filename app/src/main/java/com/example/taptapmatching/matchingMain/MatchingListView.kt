@@ -3,14 +3,12 @@ package com.example.taptapmatching
 import android.R
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
-import com.example.taptapmatching.matchingMain.CalendarDialogDelegate
-import com.example.taptapmatching.matchingMain.CalendarSelectFragment
-import com.example.taptapmatching.matchingMain.MatchingCalendarRecycler
-import com.example.taptapmatching.matchingMain.MatchingFilterRecycler
+import com.example.taptapmatching.matchingMain.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -20,7 +18,7 @@ enum class MatchType {
     MERCENARY
 }
 
-class MatchingListView : AppCompatActivity() {
+class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate {
 
     var selectedDates: MutableSet<LocalDate> = mutableSetOf()
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
@@ -99,8 +97,14 @@ class MatchingListView : AppCompatActivity() {
         val data2: MutableList<MatchingFilterRecycler.FilterInfo> = filterRecycler.loadData()
         var adapter2 = MatchingFilterRecycler.CustomAdapter()
         adapter2.listData = data2
+        adapter2.delegate = this
         binding.filterRecyclerView.adapter = adapter2
         binding.filterRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    override fun didSelectFilterType(type: MatchingFilterRecycler.FilterType) {
+        // 이 타이밍에 하단 필터를 보여준다.
+        Toast.makeText(this, "${type}", Toast.LENGTH_LONG).show()
     }
 
 }
