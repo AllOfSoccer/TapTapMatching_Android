@@ -105,6 +105,9 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate {
     override fun didSelectFilterType(type: MatchingFilterRecycler.FilterType) {
         // 이 타이밍에 하단 필터를 보여준다.
         Toast.makeText(this, "${type}", Toast.LENGTH_LONG).show()
+
+        val detailFilteringFragment = DetailFilteringFragment()
+        detailFilteringFragment.show(supportFragmentManager, "DetailFilteringFragment")
     }
 
 }
