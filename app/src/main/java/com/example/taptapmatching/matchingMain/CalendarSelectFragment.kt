@@ -22,6 +22,8 @@ interface CalendarDialogDelegate {
 
 class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
 
+    var selectedDates: MutableSet<LocalDate> = mutableSetOf()
+
     private var _binding: FragmentCalendarSelectBinding? = null
     private val binding get() = _binding!!
 
@@ -49,12 +51,6 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         binding.dialogRecyclerView.layoutManager = grid
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        Log.d("didSelect", "onDestroyView")
-    }
-
     override fun onDestroy() {
         super.onDestroy()
 
@@ -65,8 +61,6 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
             Log.d("didSelect", "aaaa ${this.selectedDates}")
         }
     }
-
-    var selectedDates: MutableSet<LocalDate> = mutableSetOf()
 
     override fun didSelect(dates: MutableSet<LocalDate>) {
         selectedDates = dates

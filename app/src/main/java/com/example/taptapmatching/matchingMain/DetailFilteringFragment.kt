@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taptapmatching.R
 import com.example.taptapmatching.databinding.FragmentCalendarSelectBinding
 import com.example.taptapmatching.databinding.FragmentDetailFilteringBinding
@@ -25,7 +27,19 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
     ): View? {
         _binding = FragmentDetailFilteringBinding.inflate(inflater, container, false)
         val view = binding.root
-        Log.d("binding", "${view}")
+
+        this.setupRecyclerView()
+
         return view
+    }
+
+    fun setupRecyclerView() {
+        var filterRecycler = MatchingFilterRecycler()
+        val data: MutableList<MatchingFilterRecycler.FilterInfo> = filterRecycler.loadData()
+        var adapter = MatchingFilterRecycler.CustomAdapter()
+        adapter.listData = data
+
+        binding.recyclerView2.adapter = adapter
+        binding.recyclerView2.layoutManager = GridLayoutManager(activity, 2)
     }
 }
