@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.taptapmatching.R
 import com.example.taptapmatching.databinding.FragmentCalendarSelectBinding
 import com.example.taptapmatching.databinding.FragmentDetailFilteringBinding
@@ -34,12 +35,12 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
     }
 
     fun setupRecyclerView() {
-        var filterRecycler = MatchingFilterRecycler()
-        val data: MutableList<MatchingFilterRecycler.FilterInfo> = filterRecycler.loadData()
-        var adapter = MatchingFilterRecycler.CustomAdapter()
+        var filterRecycler = DetailFilteringRecycler()
+        val data: MutableList<String> = filterRecycler.loadData()
+        var adapter = DetailFilteringRecycler.CustomAdapter()
         adapter.listData = data
 
         binding.recyclerView2.adapter = adapter
-        binding.recyclerView2.layoutManager = GridLayoutManager(activity, 2)
+        binding.recyclerView2.layoutManager = GridLayoutManager(activity, 3, LinearLayoutManager.HORIZONTAL, false)
     }
 }

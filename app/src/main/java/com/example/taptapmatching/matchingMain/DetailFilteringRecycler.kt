@@ -3,6 +3,7 @@ package com.example.taptapmatching.matchingMain
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taptapmatching.databinding.DetailfilteringRecyclerBinding
 import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
 
 
@@ -30,7 +31,7 @@ class DetailFilteringRecycler {
 
         // 한 화면에 그려지는 아이템 개수만큼 레이아웃 생
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-            val binding = FragmentSmallFilteringBinding.inflate(
+            val binding = DetailfilteringRecyclerBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false)
 
@@ -45,21 +46,21 @@ class DetailFilteringRecycler {
         // 생성된 뷰 홀더를 화면에 보여줌
         override fun onBindViewHolder(holder: Holder, position: Int) {
             val memo = listData.get(position)
-            holder.setMemo(memo)
+            holder.setButton(memo)
 
-            holder.binding.textView5.setOnClickListener {
+            holder.binding.button5.setOnClickListener {
 
             }
+
         }
     }
 
-    class Holder(val binding: FragmentSmallFilteringBinding): RecyclerView.ViewHolder(binding.root) {
+    class Holder(val binding: DetailfilteringRecyclerBinding): RecyclerView.ViewHolder(binding.root) {
         // binding을 생성 시점에 전달받아 해당 바인딩에 있는 데이터를 세팅
-        fun setMemo(filterInfo: FilterInfo) {
-            binding.textView5.text = "${filterInfo.title}"
+        fun setButton(title: String) {
+            binding.button5.text = title
         }
 
     }
 
-    data class FilterInfo(var title: String, var isSelected: Boolean)
 }
