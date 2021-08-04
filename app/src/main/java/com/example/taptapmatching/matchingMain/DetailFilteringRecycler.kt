@@ -1,7 +1,9 @@
 package com.example.taptapmatching.matchingMain
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.DetailfilteringRecyclerBinding
 import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
@@ -49,7 +51,7 @@ class DetailFilteringRecycler {
             holder.setButton(memo)
 
             holder.binding.button5.setOnClickListener {
-
+                Log.d("onBindViewHolder", "${memo}")
             }
 
         }
