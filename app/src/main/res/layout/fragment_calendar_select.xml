@@ -11,6 +11,13 @@
         android:layout_gravity="center_horizontal|center_vertical"
         android:background="#FFEB3B">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dialogRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="182dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal" />
+
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
@@ -103,12 +110,16 @@
                 android:text="일" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dialogRecyclerView"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/calendarViewPager"
             android:layout_width="match_parent"
-            android:layout_height="182dp"
+            android:layout_height="181dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="70dp"
-            android:orientation="horizontal" />
+            android:background="#38406E">
+
+        </androidx.viewpager2.widget.ViewPager2>
 
     </FrameLayout>
+
 </FrameLayout>

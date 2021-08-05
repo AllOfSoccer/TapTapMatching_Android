@@ -5,11 +5,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.adapter.FragmentViewHolder
+import androidx.viewpager2.widget.ViewPager2
 import com.example.taptapmatching.MatchingListView
+import com.example.taptapmatching.databinding.DialogCalendarLayoutBinding
 import com.example.taptapmatching.databinding.FragmentCalendarSelectBinding
+import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
 import com.example.taptapmatching.matchingMain.SelectCalendar.DialogCalendarRecycler
+import com.example.taptapmatching.matchingMain.SelectCalendar.recycler_calendar_fragment
 import java.time.LocalDate
 
 interface CalendarDialogDelegate {
@@ -29,8 +39,17 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
     ): View? {
         _binding = FragmentCalendarSelectBinding.inflate(inflater, container, false)
         val view = binding.root
+
         this.setupFilterRecycler()
+        this.setupViewPager2()
+
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        binding.calendarViewPager.setCurrentItem(1, false)
     }
 
     fun setupFilterRecycler() {
@@ -45,6 +64,13 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
 
         val grid = GridLayoutManager(activity, 7)
         binding.dialogRecyclerView.layoutManager = grid
+    }
+
+    fun setupViewPager2() {
+        val recycler = ViewPager2Recycler()
+
+        var adapter = ViewPager2Recycler.CustomAdapter(requireActivity())
+        binding.calendarViewPager.adapter = adapter
     }
 
     override fun onDestroy() {
@@ -63,3 +89,20 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         Log.d("didSelect", "dates ${dates}")
     }
 }
+
+class ViewPager2Recycler {
+
+    class CustomAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
+
+        override fun getItemCount(): Int {
+            return 3
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            return recycler_calendar_fragment()
+        }
+
+    }
+
+}
+
