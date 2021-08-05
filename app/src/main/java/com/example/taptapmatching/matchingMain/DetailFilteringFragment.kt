@@ -50,7 +50,7 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
         filterRecycler.type = this.type
 
         binding.recyclerView2.adapter = adapter
-        binding.recyclerView2.layoutManager = GridLayoutManager(activity, 3, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView2.layoutManager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
     }
 
     fun setupListener() {
