@@ -128,7 +128,7 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
     }
 
     override fun didClose() {
-        Log.d("MatchingListView", "didClose")
+        Log.d("MatchingListView", "didClose ${MatchingDataSource.shared.list}")
     }
 
     override fun applyFilterList(list: MutableSet<String>) {
