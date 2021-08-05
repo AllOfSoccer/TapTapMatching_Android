@@ -5,16 +5,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/rectange_r4"
-    android:backgroundTint="#9D9FA0"
+    android:backgroundTint="@color/selector_filter_bg"
     tools:context=".matchingFilter.smallFilteringFragment">
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_weight="0"
         android:text="TextView"
-        android:layout_marginStart="5dp"
         android:textColor="#0C0101" />
 
     <ImageView

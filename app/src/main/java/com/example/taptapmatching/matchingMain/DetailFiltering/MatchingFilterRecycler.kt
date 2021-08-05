@@ -1,5 +1,6 @@
 package com.example.taptapmatching.matchingMain
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -66,7 +67,11 @@ class MatchingFilterRecycler {
             val memo = listData.get(position)
             holder.setMemo(memo)
 
-            holder.binding.textView5.setOnClickListener {
+            holder.binding.root.setOnClickListener {
+                holder.binding.root.run {
+                    isSelected = !isSelected
+                }
+
                 val pos = holder.getAdapterPosition()
                 this.delegate?.didSelectFilterType(getFilterType(pos))
             }
