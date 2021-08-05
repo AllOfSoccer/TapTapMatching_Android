@@ -40,7 +40,7 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         _binding = FragmentCalendarSelectBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        this.setupFilterRecycler()
+
         this.setupViewPager2()
 
         return view
@@ -95,11 +95,15 @@ class ViewPager2Recycler {
     class CustomAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
 
         override fun getItemCount(): Int {
-            return 3
+            return 24
         }
 
         override fun createFragment(position: Int): Fragment {
             return recycler_calendar_fragment()
+        }
+
+        override fun getItemId(position: Int): Long {
+            return super.getItemId(position)
         }
 
     }
