@@ -18,7 +18,7 @@ enum class MatchType {
     MERCENARY
 }
 
-class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate {
+class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, DetailFilteringFragementDelegate {
 
     var selectedDates: MutableSet<LocalDate> = mutableSetOf()
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
@@ -107,8 +107,17 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate {
         Log.d("didSelectFilterType", "${type}")
 
         val detailFilteringFragment = DetailFilteringFragment()
+        detailFilteringFragment.delegate = this
         detailFilteringFragment.type = type
         detailFilteringFragment.show(supportFragmentManager, "DetailFilteringFragment")
+    }
+
+    override fun didClose() {
+        Log.d("MatchingListView", "didClose")
+    }
+
+    override fun applyFilterList(list: MutableSet<String>) {
+        Log.d("MatchingListView", "applyList ${list}")
     }
 
 }

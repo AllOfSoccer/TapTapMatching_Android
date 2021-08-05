@@ -20,11 +20,11 @@ class DetailFilteringRecycler {
     fun loadData(): MutableList<String> {
         var result: MutableList<String> = mutableListOf() // 컬렉션을 선언
 
-        result.add("1")
-        result.add("2")
-        result.add("3")
-        result.add("4")
-        result.add("5")
+        result.add("서울")
+        result.add("경기-북부")
+        result.add("경기-남부")
+        result.add("인천,부천")
+        result.add("기타지")
 
         return result
     }
@@ -32,6 +32,7 @@ class DetailFilteringRecycler {
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
 
         var listData = mutableListOf<String>()
+        var selectedListData = mutableSetOf<String>()
 
         // 한 화면에 그려지는 아이템 개수만큼 레이아웃 생
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -53,7 +54,8 @@ class DetailFilteringRecycler {
             holder.setButton(memo)
 
             holder.binding.button5.setOnClickListener {
-                Log.d("onBindViewHolder", "${memo}")
+                this.selectedListData.add(memo)
+                Log.d("onBindViewHolder", "${this.selectedListData}")
             }
 
         }

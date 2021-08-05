@@ -12,7 +12,7 @@
         android:layout_gravity="bottom|left">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/filterDetailCloseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/applyFilterButton"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:text="필터 적용하기 (12건)"
@@ -52,7 +52,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="12dp"
             android:background="#FFC107"
-            app:layout_constraintBottom_toTopOf="@+id/button4"
+            app:layout_constraintBottom_toTopOf="@+id/applyFilterButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

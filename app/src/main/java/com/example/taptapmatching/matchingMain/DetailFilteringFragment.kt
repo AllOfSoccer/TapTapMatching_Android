@@ -15,12 +15,20 @@ import com.example.taptapmatching.databinding.FragmentCalendarSelectBinding
 import com.example.taptapmatching.databinding.FragmentDetailFilteringBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+interface  DetailFilteringFragementDelegate {
+    fun didClose()
+    fun applyFilterList(list: MutableSet<String>)
+}
+
 class DetailFilteringFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentDetailFilteringBinding? = null
     private val binding get() = _binding!!
 
     var type: MatchingFilterRecycler.FilterType? = null
+
+    var delegate: DetailFilteringFragementDelegate? = null
+    var adapter = DetailFilteringRecycler.CustomAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +38,7 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
         val view = binding.root
 
         this.setupRecyclerView()
+        this.setupListener()
 
         return view
     }
@@ -37,11 +46,20 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
     fun setupRecyclerView() {
         var filterRecycler = DetailFilteringRecycler()
         val data: MutableList<String> = filterRecycler.loadData()
-        var adapter = DetailFilteringRecycler.CustomAdapter()
         adapter.listData = data
         filterRecycler.type = this.type
 
         binding.recyclerView2.adapter = adapter
         binding.recyclerView2.layoutManager = GridLayoutManager(activity, 3, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    fun setupListener() {
+        binding.filterDetailCloseButton.setOnClickListener {
+            this.delegate?.didClose()
+        }
+
+        binding.applyFilterButton.setOnClickListener {
+            this.delegate?.applyFilterList(this.adapter.selectedListData)
+        }
     }
 }
