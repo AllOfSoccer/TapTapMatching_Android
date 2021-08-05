@@ -19,7 +19,7 @@ enum class MatchType {
     MERCENARY
 }
 
-class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, DetailFilteringFragementDelegate {
+class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, DetailFilteringFragementDelegate, MatchingListRecyclerDelegate {
 
     var selectedDates: MutableSet<LocalDate> = mutableSetOf()
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
@@ -52,6 +52,10 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
             val orderSortingFragment = OrderSortingFragment()
             orderSortingFragment.show(supportFragmentManager, "OrderSortingFragment")
         }
+    }
+
+    override fun didSelect(matching: MatchingData) {
+        Log.d("matchingListView", "${matching}")
     }
 
     fun setupTabLayout() {
@@ -132,8 +136,7 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         val data: MutableList<MatchingData> = matchingListRecycler.loadData()
         var adapter = MatchingListRecycler.CustomAdapter()
         adapter.listData = data
-        Log.d("개수","${data.size}")
-        //adapter.delegate = this
+        adapter.delegate = this
 
         binding.matchingListRecyclerView.adapter = adapter
         binding.matchingListRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

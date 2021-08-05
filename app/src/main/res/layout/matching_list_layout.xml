@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/matchingListContentLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="85dp"
+        android:layout_height="102dp">
+
+        <ImageButton
+            android:id="@+id/favoriteImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/recruitStateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="모집중" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="249dp"
+        android:layout_height="101dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/locationNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="용산 아이파크 몰" />
+
+        <TextView
+            android:id="@+id/detailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6vs6, 남성매치, 실력 하, 7000원" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="76dp"
@@ -24,41 +61,5 @@
             android:text="10:30"
             android:textAlignment="center" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="249dp"
-        android:layout_height="101dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/locationNameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="용산 아이파크 몰" />
-
-        <TextView
-            android:id="@+id/detailTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="6vs6, 남성매치, 실력 하, 7000원" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="85dp"
-        android:layout_height="102dp">
-
-        <ImageButton
-            android:id="@+id/favoriteImageButton"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-        <TextView
-            android:id="@+id/recruitStateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="모집중" />
-    </FrameLayout>
 
 </LinearLayout>

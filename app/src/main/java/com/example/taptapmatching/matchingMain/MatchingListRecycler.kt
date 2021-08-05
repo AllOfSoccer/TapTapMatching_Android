@@ -9,6 +9,10 @@ import com.example.taptapmatching.databinding.MatchingListLayoutBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+interface MatchingListRecyclerDelegate {
+    fun didSelect(matching: MatchingData)
+}
+
 public class MatchingListRecycler {
     fun loadData(): MutableList<MatchingData> {
         return MatchingDataSource.shared.list
@@ -17,6 +21,7 @@ public class MatchingListRecycler {
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
 
         var listData = mutableListOf<MatchingData>()
+        var delegate: MatchingListRecyclerDelegate? = null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val binding = MatchingListLayoutBinding.inflate(
@@ -32,6 +37,10 @@ public class MatchingListRecycler {
         override fun onBindViewHolder(holder: Holder, position: Int) {
             val matching = listData.get(position)
             holder.setMatching(matching)
+
+            holder.binding.matchingListContentLayout.setOnClickListener {
+                this.delegate?.didSelect(matching)
+            }
         }
     }
 
