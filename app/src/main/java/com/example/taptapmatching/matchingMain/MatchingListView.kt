@@ -43,6 +43,15 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
 
         this.setupButtonListener()
         this.setupTabLayout()
+
+        this.setupFilteringOrder()
+    }
+
+    fun setupFilteringOrder() {
+        binding.orderFilteringTextView.setOnClickListener {
+            val orderSortingFragment = OrderSortingFragment()
+            orderSortingFragment.show(supportFragmentManager, "OrderSortingFragment")
+        }
     }
 
     fun setupTabLayout() {
