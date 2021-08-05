@@ -40,30 +40,9 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         _binding = FragmentCalendarSelectBinding.inflate(inflater, container, false)
         val view = binding.root
 
-
         this.setupViewPager2()
 
         return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        binding.calendarViewPager.setCurrentItem(1, false)
-    }
-
-    fun setupFilterRecycler() {
-        val recycler = DialogCalendarRecycler()
-
-        val data: MutableList<DialogCalendarRecycler.SmallDate> = recycler.loadData()
-        var adapter = DialogCalendarRecycler.CustomAdapter()
-        adapter.delegate = this
-        adapter.listData = data
-
-        binding.dialogRecyclerView.adapter = adapter
-
-        val grid = GridLayoutManager(activity, 7)
-        binding.dialogRecyclerView.layoutManager = grid
     }
 
     fun setupViewPager2() {
@@ -80,13 +59,11 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
 
         if (currentActivity is MatchingListView) {
             currentActivity.selectedDates = this.selectedDates
-            Log.d("didSelect", "aaaa ${this.selectedDates}")
         }
     }
 
     override fun didSelect(dates: MutableSet<LocalDate>) {
         selectedDates = dates
-        Log.d("didSelect", "dates ${dates}")
     }
 }
 
@@ -99,7 +76,7 @@ class ViewPager2Recycler {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return recycler_calendar_fragment()
+            return recycler_calendar_fragment(position)
         }
 
         override fun getItemId(position: Int): Long {

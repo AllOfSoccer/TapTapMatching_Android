@@ -11,12 +11,11 @@ import com.example.taptapmatching.databinding.FragmentCalendarSelectBinding
 import com.example.taptapmatching.databinding.FragmentDetailFilteringBinding
 import com.example.taptapmatching.databinding.FragmentRecyclerCalendarFragmentBinding
 
-class recycler_calendar_fragment : Fragment() {
+class recycler_calendar_fragment(private var position: Int) : Fragment() {
 
     private var _binding: FragmentRecyclerCalendarFragmentBinding? = null
     private val binding get() = _binding!!
 
-    var position: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +33,7 @@ class recycler_calendar_fragment : Fragment() {
     fun setupFilterRecycler() {
         val recycler = DialogCalendarRecycler()
 
-        val data: MutableList<DialogCalendarRecycler.SmallDate> = recycler.loadData()
+        val data: MutableList<DialogCalendarRecycler.SmallDate> = recycler.loadData(position)
         var adapter = DialogCalendarRecycler.CustomAdapter()
 
         adapter.listData = data

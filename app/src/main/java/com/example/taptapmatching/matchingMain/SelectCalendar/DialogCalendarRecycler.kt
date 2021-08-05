@@ -13,9 +13,11 @@ import java.time.format.DateTimeFormatter
 public class DialogCalendarRecycler {
     data class SmallDate(var weakDay: String, var date: LocalDate)
 
-    fun loadData(): MutableList<SmallDate> {
+    fun loadData(position: Int): MutableList<SmallDate> {
+        Log.d("DialogCalendarRecycler", "position ${position}")
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
-        return this.getNextMonthDate(0)
+        
+        return this.getNextMonthDate(position.toLong())
     }
 
     fun getNextMonthDate(nextMonth: Long): MutableList<SmallDate> {
