@@ -1,4 +1,4 @@
-package com.example.taptapmatching.matchingMain
+package com.example.taptapmatching.matchingMain.SelectSorting
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

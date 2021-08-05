@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/rectange_r4"
+    android:backgroundTint="#9D9FA0"
     tools:context=".matchingFilter.smallFilteringFragment">
 
     <TextView
@@ -12,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="TextView"
+        android:layout_marginStart="5dp"
         android:textColor="#0C0101" />
 
     <ImageView

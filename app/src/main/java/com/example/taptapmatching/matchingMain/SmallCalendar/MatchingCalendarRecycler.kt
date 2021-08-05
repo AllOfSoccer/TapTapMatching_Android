@@ -1,4 +1,4 @@
-package com.example.taptapmatching.matchingMain
+package com.example.taptapmatching.matchingMain.SmallCalendar
 
 import android.os.Build
 import android.view.LayoutInflater

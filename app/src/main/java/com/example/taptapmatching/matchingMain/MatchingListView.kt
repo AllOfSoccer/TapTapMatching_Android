@@ -1,16 +1,18 @@
 package com.example.taptapmatching
 
-import android.R
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.MatchingDetail.MatchingDetailActivity
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
+import com.example.taptapmatching.matchingMain.SelectSorting.OrderSortingFragment
+import com.example.taptapmatching.matchingMain.SmallCalendar.MatchingCalendarRecycler
 import com.google.android.material.tabs.TabLayout
 import java.io.Serializable
 import java.time.LocalDate
@@ -127,6 +129,8 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         var adapter2 = MatchingFilterRecycler.CustomAdapter()
         adapter2.listData = data2
         adapter2.delegate = this
+
+        binding.filterRecyclerView.addItemDecoration(Test())
         binding.filterRecyclerView.adapter = adapter2
         binding.filterRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
@@ -169,6 +173,20 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         this.startActivity(matchingListIntent)
 
         Log.d("matchingListView", "${matching}")
+    }
+
+    private class Test: RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            super.getItemOffsets(outRect, view, parent, state)
+            outRect.right = outRect.right.plus(30)
+        }
+
     }
 
 }
