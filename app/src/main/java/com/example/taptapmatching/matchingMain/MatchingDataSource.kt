@@ -1,5 +1,5 @@
 package com.example.taptapmatching.matchingMain
-
+import java.io.Serializable
 import java.time.LocalDate
 
 enum class Gender {
@@ -13,7 +13,7 @@ data class MatchingData(val time: LocalDate,
                         val gender: Gender,
                         val teamName: String,
                         val isFavorite: Boolean,
-                        val isFindNow: Boolean) {
+                        val isFindNow: Boolean): Serializable {
 }
 
 class MatchingDataSource {

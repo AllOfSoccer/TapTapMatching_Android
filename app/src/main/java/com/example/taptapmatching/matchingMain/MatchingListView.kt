@@ -1,15 +1,18 @@
 package com.example.taptapmatching
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taptapmatching.MatchingDetail.MatchingDetailActivity
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
 import com.google.android.material.tabs.TabLayout
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -52,10 +55,6 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
             val orderSortingFragment = OrderSortingFragment()
             orderSortingFragment.show(supportFragmentManager, "OrderSortingFragment")
         }
-    }
-
-    override fun didSelect(matching: MatchingData) {
-        Log.d("matchingListView", "${matching}")
     }
 
     fun setupTabLayout() {
@@ -152,12 +151,24 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         detailFilteringFragment.show(supportFragmentManager, "DetailFilteringFragment")
     }
 
+    // Delegate 함수
     override fun didClose() {
         Log.d("MatchingListView", "didClose ${MatchingDataSource.shared.list}")
     }
 
     override fun applyFilterList(list: MutableSet<String>) {
         Log.d("MatchingListView", "applyList ${list}")
+    }
+
+    override fun didSelect(matching: MatchingData) {
+        //내비게이션 Fragment 띄우기
+
+        val matchingListIntent = Intent(this, MatchingDetailActivity::class.java)
+        matchingListIntent.putExtra("data", matching as Serializable)
+
+        this.startActivity(matchingListIntent)
+
+        Log.d("matchingListView", "${matching}")
     }
 
 }
