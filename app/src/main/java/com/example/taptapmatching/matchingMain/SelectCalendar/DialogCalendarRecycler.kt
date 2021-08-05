@@ -33,7 +33,7 @@ public class DialogCalendarRecycler {
 
         var currentDay: Int = 0
 
-        for (no in 0..31) {
+        for (no in 1..31) {
             val tomorrow = LocalDate.now().plusMonths(nextMonth).plusDays(no.toLong())
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
             var smallDate = SmallDate("${formattedTomorrow}", tomorrow)

@@ -43,7 +43,7 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
 
         binding.dialogRecyclerView.adapter = adapter
 
-        val grid = GridLayoutManager(activity, 6)
+        val grid = GridLayoutManager(activity, 7)
         binding.dialogRecyclerView.layoutManager = grid
     }
 
