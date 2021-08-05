@@ -92,4 +92,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/matchingListRecyclerView"
+        android:layout_width="409dp"
+        android:layout_height="439dp"
+        android:background="#559509"
+        app:layout_constraintBottom_toTopOf="@+id/mainTabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterRecyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

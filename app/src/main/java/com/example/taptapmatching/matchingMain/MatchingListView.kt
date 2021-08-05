@@ -26,6 +26,7 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
 
     var calendarRecycler = MatchingCalendarRecycler()
     var filterRecycler = MatchingFilterRecycler()
+    var matchingListRecycler = MatchingListRecycler()
 
     var currentMatchType: MatchType = MatchType.TEAM
 
@@ -38,6 +39,7 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
 
         this.setupCalendarRecylcer()
         this.setupFilterRecycler()
+        this.setupMatchingListRecylcer()
 
         this.setupButtonListener()
         this.setupTabLayout()
@@ -115,6 +117,17 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         adapter2.delegate = this
         binding.filterRecyclerView.adapter = adapter2
         binding.filterRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    fun setupMatchingListRecylcer() {
+        val data: MutableList<MatchingData> = matchingListRecycler.loadData()
+        var adapter = MatchingListRecycler.CustomAdapter()
+        adapter.listData = data
+        Log.d("개수","${data.size}")
+        //adapter.delegate = this
+
+        binding.matchingListRecyclerView.adapter = adapter
+        binding.matchingListRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     override fun didSelectFilterType(type: MatchingFilterRecycler.FilterType) {
