@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
+import com.google.android.material.tabs.TabLayout
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -39,17 +40,31 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         this.setupFilterRecycler()
 
         this.setupButtonListener()
+        this.setupTabLayout()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    fun setupTabLayout() {
+        binding.mainTabLayout.addTab(binding.mainTabLayout.newTab().setText("경기 매칭"))
+        binding.mainTabLayout.addTab(binding.mainTabLayout.newTab().setText("설정"))
 
-        Log.d("lifeCycle", "onDestory")
+        binding.mainTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.d("mainTabLayout", "onTabSelected ${tab?.text}")
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                Log.d("mainTabLayout", "onTabUnselected ${tab?.text}")
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                Log.d("mainTabLayout", "onTabReselected ${tab?.text}")
+            }
+        })
     }
 
     fun setupMonthListener() {
         binding.month.setOnClickListener {
-            val calendarSelectFragment = CalendarSelectFragment()
+           val calendarSelectFragment = CalendarSelectFragment()
             calendarSelectFragment.show(supportFragmentManager, "CalendarSelectFragment")
         }
     }

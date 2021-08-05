@@ -56,6 +56,7 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
     fun setupListener() {
         binding.filterDetailCloseButton.setOnClickListener {
             this.delegate?.didClose()
+            this.onDestroyView()
         }
 
         binding.applyFilterButton.setOnClickListener {
