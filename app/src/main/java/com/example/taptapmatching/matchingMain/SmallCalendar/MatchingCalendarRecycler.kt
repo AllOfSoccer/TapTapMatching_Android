@@ -1,11 +1,14 @@
 package com.example.taptapmatching.matchingMain.SmallCalendar
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.SmallcalendarRecyclerBinding
+import kotlinx.coroutines.selects.select
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -50,6 +53,8 @@ public class MatchingCalendarRecycler {
 
         var listData = mutableListOf<SmallDate>()
 
+        private var selectedDate: MutableSet<LocalDate> = mutableSetOf<LocalDate>()
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val binding = SmallcalendarRecyclerBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -61,9 +66,38 @@ public class MatchingCalendarRecycler {
             return listData.size
         }
 
+
+
         override fun onBindViewHolder(holder: Holder, position: Int) {
             val memo = listData.get(position)
             holder.setMemo(memo)
+
+            var selectedColor = Color.WHITE
+            var isSeleted: Boolean = false
+
+            if (selectedDate.isEmpty() == false) {
+                if (memo.date == selectedDate.first()) {
+                    isSeleted = true
+                    selectedColor = Color.parseColor("#f2f3f5")
+                }
+            }
+
+            var shape = GradientDrawable()
+            val round = (holder.binding.root.width / 2).toFloat()
+
+            shape.setCornerRadius(round)
+            shape.setColor(selectedColor)
+
+            holder.binding.root.setBackground(shape)
+
+            holder.binding.root.setOnClickListener {
+                selectedDate.add(listData[position].date)
+                selectedDate = selectedDate.filter { it == listData[position].date }.toSet().toMutableSet()
+
+                Toast.makeText(holder.binding.root.context, "클릭된 아이템 = ${selectedDate}", Toast.LENGTH_LONG).show()
+
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -72,11 +106,16 @@ public class MatchingCalendarRecycler {
         fun setMemo(smallDate: SmallDate) {
             binding.weakDate.text = smallDate.weakDate
             binding.weakDay.text = smallDate.weakDay
-        }
 
-        init {
-            binding.root.setOnClickListener {
-                Toast.makeText(binding.root.context, "클릭된 아이템 = ${binding.weakDate.text}", Toast.LENGTH_LONG).show()
+            if (smallDate.weakDate == "토") {
+                binding.weakDate.setTextColor(Color.parseColor("#2c81d0"))
+                binding.weakDay.setTextColor(Color.parseColor("#2c81d0"))
+            } else if (smallDate.weakDate == "일") {
+                binding.weakDate.setTextColor(Color.parseColor("#d63030"))
+                binding.weakDay.setTextColor(Color.parseColor("#d63030"))
+            } else {
+                binding.weakDate.setTextColor(Color.BLACK)
+                binding.weakDay.setTextColor(Color.BLACK)
             }
         }
     }
