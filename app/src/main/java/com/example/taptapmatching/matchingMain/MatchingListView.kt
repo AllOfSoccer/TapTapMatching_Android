@@ -1,5 +1,6 @@
 package com.example.taptapmatching
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
@@ -86,14 +87,36 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
     }
 
     fun setupButtonListener() {
-        binding.teamButton.setOnClickListener {
+        this.binding.teamButton.isSelected = true
+
+        this.binding.teamButton.setOnClickListener {
             this.currentMatchType = MatchType.TEAM
-            it.isSelected = !it.isSelected
+            it.isSelected = true
+
+            if (this.binding.mercenaryButton.isSelected) {
+                this.binding.mercenaryButton.isSelected = false
+            }
+
+            this.animateHighlighView(this.currentMatchType)
         }
 
-        binding.mercenaryButton.setOnClickListener {
+        this.binding.mercenaryButton.setOnClickListener {
             this.currentMatchType = MatchType.MERCENARY
-            it.isSelected = !it.isSelected
+            it.isSelected = true
+
+            if (this.binding.teamButton.isSelected) {
+                this.binding.teamButton.isSelected = false
+            }
+
+            this.animateHighlighView(this.currentMatchType)
+        }
+    }
+
+    fun animateHighlighView(matchType: MatchType) {
+        val xPosition = if (matchType == MatchType.TEAM) 10f else 10f + this.binding.teamButton.width
+        ObjectAnimator.ofFloat(this.binding.matchHighlightView, "translationX", xPosition).apply {
+            duration = 300
+            start()
         }
     }
 
