@@ -14,6 +14,7 @@ import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
 import com.example.taptapmatching.matchingMain.SelectSorting.OrderSortingFragment
 import com.example.taptapmatching.matchingMain.SmallCalendar.MatchingCalendarRecycler
+import com.example.taptapmatching.matchingMain.SmallCalendar.MatchingCalendarRecyclerDelegate
 import com.google.android.material.tabs.TabLayout
 import java.io.Serializable
 import java.time.LocalDate
@@ -25,7 +26,7 @@ enum class MatchType {
     MERCENARY
 }
 
-class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, DetailFilteringFragementDelegate, MatchingListRecyclerDelegate {
+class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, DetailFilteringFragementDelegate, MatchingListRecyclerDelegate, MatchingCalendarRecyclerDelegate {
 
     var selectedDates: MutableSet<LocalDate> = mutableSetOf()
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
@@ -124,6 +125,7 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         val data: MutableList<MatchingCalendarRecycler.SmallDate> = calendarRecycler.loadData()
         var adapter = MatchingCalendarRecycler.CustomAdapter()
         adapter.listData = data
+        adapter.delegate = this
         binding.smallCalendarRecyclerView.adapter = adapter
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -196,6 +198,10 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         this.startActivity(matchingListIntent)
 
         Log.d("matchingListView", "${matching}")
+    }
+
+    override fun didSelect(selectedDate: LocalDate) {
+        Log.d("matchingListView", "${selectedDate}")
     }
 
     private class Test: RecyclerView.ItemDecoration() {

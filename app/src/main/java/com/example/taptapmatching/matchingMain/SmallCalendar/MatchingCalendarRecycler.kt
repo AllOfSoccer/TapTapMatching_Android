@@ -32,6 +32,10 @@ fun DayOfWeek.toKorean() : String {
     }
 }
 
+interface MatchingCalendarRecyclerDelegate {
+    fun didSelect(selectedDate: LocalDate)
+}
+
 public class MatchingCalendarRecycler {
     data class SmallDate(var weakDate: String, var weakDay: String, var date: LocalDate)
 
@@ -52,6 +56,7 @@ public class MatchingCalendarRecycler {
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
 
         var listData = mutableListOf<SmallDate>()
+        var delegate: MatchingCalendarRecyclerDelegate? = null
 
         private var selectedDate: MutableSet<LocalDate> = mutableSetOf<LocalDate>()
 
@@ -65,8 +70,6 @@ public class MatchingCalendarRecycler {
         override fun getItemCount(): Int {
             return listData.size
         }
-
-
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
             val memo = listData.get(position)
@@ -93,6 +96,7 @@ public class MatchingCalendarRecycler {
             holder.binding.root.setOnClickListener {
                 selectedDate.add(listData[position].date)
                 selectedDate = selectedDate.filter { it == listData[position].date }.toSet().toMutableSet()
+                this.delegate?.didSelect(listData[position].date)
 
                 Toast.makeText(holder.binding.root.context, "클릭된 아이템 = ${selectedDate}", Toast.LENGTH_LONG).show()
 
