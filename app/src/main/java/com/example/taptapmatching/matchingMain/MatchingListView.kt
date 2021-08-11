@@ -67,16 +67,17 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         }
 
         binding.makeTeamButton.setOnClickListener {
-            //액티비티 생성
             val matchingListIntent = Intent(this, MakeTeamMatchingRoomActivity::class.java)
-            //matchingListIntent.putExtra("data", matching as Serializable)
+            val matchingType = MatchType.TEAM
+            matchingListIntent.putExtra("data", matchingType as Serializable)
 
             this.startActivity(matchingListIntent)
         }
 
         binding.makeMercenaryButton.setOnClickListener {
             val matchingListIntent = Intent(this, MakeTeamMatchingRoomActivity::class.java)
-            //matchingListIntent.putExtra("data", matching as Serializable)
+            val matchingType = MatchType.MERCENARY
+            matchingListIntent.putExtra("data", matchingType as Serializable)
 
             this.startActivity(matchingListIntent)
         }
