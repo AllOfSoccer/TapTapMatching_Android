@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.MatchingDetail.MatchingDetailActivity
@@ -52,6 +53,25 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         this.setupTabLayout()
 
         this.setupFilteringOrder()
+        this.setupAddMatchingButtons()
+    }
+
+    fun setupAddMatchingButtons() {
+        binding.makeTeamButton.isVisible = false
+        binding.makeMercenaryButton.isVisible = false
+
+        binding.addMatchingButton.setOnClickListener {
+            binding.makeTeamButton.isVisible = !binding.makeTeamButton.isVisible
+            binding.makeMercenaryButton.isVisible = !binding.makeMercenaryButton.isVisible
+        }
+
+        binding.makeTeamButton.setOnClickListener {
+            Log.d("matchingListView", "팀 모집방 생성")
+        }
+
+        binding.makeMercenaryButton.setOnClickListener {
+            Log.d("matchingListView", "용병 모집 방 생성")
+        }
     }
 
     fun setupFilteringOrder() {

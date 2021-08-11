@@ -32,6 +32,36 @@
         app:layout_constraintStart_toEndOf="@+id/teamButton"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/addMatchingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="93dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="134dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterRecyclerView">
+
+        <TextView
+            android:id="@+id/orderFilteringTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="거리순"
+            android:textColor="#0E0D0D" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/month"
         android:layout_width="wrap_content"
@@ -55,12 +85,14 @@
     <View
         android:id="@+id/view"
         android:layout_width="411dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginBottom="420dp"
         android:background="#EEEFF1"
+        app:layout_constraintBottom_toTopOf="@+id/addMatchingButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/smallCalendarRecyclerView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/smallCalendarRecyclerView"
@@ -83,6 +115,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/matchingListRecyclerView"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="#559509"
+        app:layout_constraintBottom_toTopOf="@+id/mainTabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterRecyclerView"
+        app:layout_constraintVertical_bias="0.0" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mainTabLayout"
         android:layout_width="0dp"
@@ -92,33 +138,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/matchingListRecyclerView"
-        android:layout_width="409dp"
-        android:layout_height="439dp"
-        android:layout_marginTop="50dp"
-        android:background="#559509"
-        app:layout_constraintBottom_toTopOf="@+id/mainTabLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterRecyclerView" />
+    <Button
+        android:id="@+id/makeMercenaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:text="용병모집"
+        app:layout_constraintBottom_toTopOf="@+id/addMatchingButton"
+        app:layout_constraintEnd_toEndOf="@+id/matchingListRecyclerView" />
 
-    <LinearLayout
-        android:layout_width="134dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterRecyclerView">
-
-        <TextView
-            android:id="@+id/orderFilteringTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="거리순"
-            android:textColor="#0E0D0D" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/makeTeamButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:text="팀 모집"
+        app:layout_constraintBottom_toTopOf="@+id/makeMercenaryButton"
+        app:layout_constraintEnd_toEndOf="@+id/matchingListRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
