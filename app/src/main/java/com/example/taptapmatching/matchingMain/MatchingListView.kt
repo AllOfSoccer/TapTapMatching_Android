@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taptapmatching.MakeMatchingRoom.MakeTeamMatchingRoomActivity
 import com.example.taptapmatching.MatchingDetail.MatchingDetailActivity
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
@@ -66,11 +67,18 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         }
 
         binding.makeTeamButton.setOnClickListener {
-            Log.d("matchingListView", "팀 모집방 생성")
+            //액티비티 생성
+            val matchingListIntent = Intent(this, MakeTeamMatchingRoomActivity::class.java)
+            //matchingListIntent.putExtra("data", matching as Serializable)
+
+            this.startActivity(matchingListIntent)
         }
 
         binding.makeMercenaryButton.setOnClickListener {
-            Log.d("matchingListView", "용병 모집 방 생성")
+            val matchingListIntent = Intent(this, MakeTeamMatchingRoomActivity::class.java)
+            //matchingListIntent.putExtra("data", matching as Serializable)
+
+            this.startActivity(matchingListIntent)
         }
     }
 
