@@ -54,4 +54,8 @@ dependencies {
     implementation "com.kakao.sdk:v2-story:2.5.2" // 카카오스토리
     implementation "com.kakao.sdk:v2-link:2.5.2" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.5.2" // 카카오내비
+
+    implementation('com.naver.maps:map-sdk:3.12.0') {
+        exclude group: 'com.android.support'
+    }
 }

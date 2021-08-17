@@ -29,6 +29,11 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="kakao2aaa5254b7023a6ff0cd23ee1a5a4dbc" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="of2mxzruo4" />
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
