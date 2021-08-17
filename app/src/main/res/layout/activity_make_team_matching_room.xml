@@ -55,6 +55,13 @@
                     android:layout_weight="1"
                     android:text="주소 복사" />
             </LinearLayout>
+
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
         </LinearLayout>
+        
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
