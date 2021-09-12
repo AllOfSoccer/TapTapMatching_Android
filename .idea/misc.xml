@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_make_team_matching_room.xml" value="0.10169916329950668" />
+        <entry key="app/src/main/res/layout/fragment_calendar_select.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/makematchingroomlayout.xml" value="0.19810926652604507" />
       </map>
     </option>

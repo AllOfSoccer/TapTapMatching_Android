@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.taptapmatching.databinding.ActivityMakeTeamMatchingRoomBinding
 import com.example.taptapmatching.databinding.MakematchingroomlayoutBinding
+import com.example.taptapmatching.matchingMain.CalendarSelectFragment
 
 class MakeTeamMatchingRoomActivity : AppCompatActivity() {
 
@@ -14,5 +15,14 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.setContentView(binding.root)
+
+        this.setupDataAndTimeButtonListener()
+    }
+
+    fun setupDataAndTimeButtonListener() {
+        binding.dateAndTimeSelectButton.setOnClickListener {
+            val calendarSelectFragment = CalendarSelectFragment()
+            calendarSelectFragment.show(supportFragmentManager, "CalendarSelectFragment")
+        }
     }
 }
