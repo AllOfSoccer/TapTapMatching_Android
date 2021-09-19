@@ -17,6 +17,7 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
         this.setContentView(binding.root)
 
         this.setupDataAndTimeButtonListener()
+        this.setupPlaceSelectButtonListener()
     }
 
     fun setupDataAndTimeButtonListener() {
@@ -28,7 +29,8 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
 
     fun setupPlaceSelectButtonListener() {
         binding.placeSelectButton.setOnClickListener {
-            // 장소 선택 팝업을 띄운다.
+            val placeSelectFragment = PlaceSelectFragment()
+            placeSelectFragment.show(supportFragmentManager, "PlaceSelectFragment")
         }
     }
 }
