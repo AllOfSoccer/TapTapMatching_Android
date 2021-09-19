@@ -88,18 +88,18 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button14"
+                        android:id="@+id/selectButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="6vs6" />
 
                     <Button
-                        android:id="@+id/button15"
+                        android:id="@+id/selectButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="11vs11" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,25 +108,25 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button18"
+                        android:id="@+id/selectButton3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="남성 매치" />
 
                     <Button
-                        android:id="@+id/button17"
+                        android:id="@+id/selectButton4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="여성 매치" />
 
                     <Button
-                        android:id="@+id/button16"
+                        android:id="@+id/selectButton5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="혼성 매치" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,18 +135,18 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button20"
+                        android:id="@+id/selectButton6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="풋살화 필수" />
 
                     <Button
-                        android:id="@+id/button19"
+                        android:id="@+id/selectButton7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_weight="0"
+                        android:text="축구화 필수" />
                 </LinearLayout>
 
                 <TextView
