@@ -25,4 +25,10 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
             calendarSelectFragment.show(supportFragmentManager, "CalendarSelectFragment")
         }
     }
+
+    fun setupPlaceSelectButtonListener() {
+        binding.placeSelectButton.setOnClickListener {
+            // 장소 선택 팝업을 띄운다.
+        }
+    }
 }

@@ -70,7 +70,7 @@
                     android:text="날짜/시간" />
 
                 <Button
-                    android:id="@+id/button10"
+                    android:id="@+id/placeSelectButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="장소 선택" />
