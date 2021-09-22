@@ -27,7 +27,7 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
 
     fun make(value: Int): SelectedButton {
         var result = SelectedButton.SIX
-        when(value) {
+        when (value) {
             0 -> result = SelectedButton.SIX
             1 -> result = SelectedButton.ELEVEN
             2 -> result = SelectedButton.MAN
@@ -43,9 +43,7 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.setContentView(binding.root)
-
         this.setupButtons()
-
         this.setupDataAndTimeButtonListener()
         this.setupPlaceSelectButtonListener()
         this.setupSelectedButtonsListener()
@@ -66,12 +64,12 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
     }
 
     fun setupButtons() {
-                this.buttons = mutableListOf(
-                    this.binding.selectButton1, this.binding.selectButton2,
-                    this.binding.selectButton3, this.binding.selectButton4,
-                    this.binding.selectButton5, this.binding.selectButton6,
-                    this.binding.selectButton7
-                )
+        this.buttons = mutableListOf(
+                this.binding.selectButton1, this.binding.selectButton2,
+                this.binding.selectButton3, this.binding.selectButton4,
+                this.binding.selectButton5, this.binding.selectButton6,
+                this.binding.selectButton7
+        )
     }
 
     fun setupSelectedButtonsListener() {
