@@ -51,6 +51,7 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
         this.setupPlaceSelectButtonListener()
         this.setupSelectedButtonsListener()
         this.setupBeforeMatchInfoButtonListener()
+        this.setupNextButtonListener()
     }
 
     fun setupDataAndTimeButtonListener() {
@@ -100,11 +101,12 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
     fun setupNextButtonListener() {
         this.binding.nextButtonFromMakeRoom.setOnClickListener {
             //TODO: 다음 Activity를 생성한다.
-//            val matchingListIntent = Intent(this, MakeTeamMatchingRoomActivity::class.java)
-//            val matchingType = MatchType.TEAM
-//            matchingListIntent.putExtra("data", matchingType as Serializable)
-//
-//            this.startActivity(matchingListIntent)
+            val intent = Intent(this, MakeSecondTeamMatchingRoomActivity::class.java)
+            //정보를 모아서 함께 넘긴다.
+            intent.putExtra("data", 5)
+            //matchingListIntent.putExtra("data", matchingType as Serializable)
+
+            this.startActivity(intent)
         }
     }
 

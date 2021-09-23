@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.taptapmatching">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MakeMatchingRoom.MakeTeamMatchingRoomActivity"></activity>
+        <activity
+            android:name=".MakeMatchingRoom.MakeSecondTeamMatchingRoomActivity"
+            android:exported="true" />
+        <activity android:name=".MakeMatchingRoom.MakeTeamMatchingRoomActivity" />
         <activity android:name=".MatchingDetail.MatchingDetailActivity" />
         <activity android:name=".MatchingListView" />
         <activity android:name=".RecyclerViewActivity" />
@@ -29,13 +34,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="kakao2aaa5254b7023a6ff0cd23ee1a5a4dbc" />
-
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="of2mxzruo4" />
-
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
