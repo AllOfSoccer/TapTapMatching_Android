@@ -91,15 +91,46 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/button18" />
 
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_width="match_parent"
+                <com.google.android.material.slider.RangeSlider
+                    android:id="@+id/slider"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:theme="@style/MyMaterialTheme"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0"
+                    android:stepSize="10.0"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="실력"
+                    android:textColor="#020202"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/slider" />
+
+                <com.google.android.material.slider.RangeSlider
+                    android:id="@+id/slider2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:theme="@style/MyMaterialTheme"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0"
+                    android:stepSize="10.0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
