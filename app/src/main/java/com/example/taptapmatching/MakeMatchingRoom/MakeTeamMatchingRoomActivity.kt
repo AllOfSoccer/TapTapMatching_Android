@@ -1,13 +1,16 @@
 package com.example.taptapmatching.MakeMatchingRoom
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import com.example.taptapmatching.MatchType
 import com.example.taptapmatching.databinding.ActivityMakeTeamMatchingRoomBinding
 import com.example.taptapmatching.databinding.MakematchingroomlayoutBinding
 import com.example.taptapmatching.matchingMain.CalendarSelectFragment
+import java.io.Serializable
 
 class MakeTeamMatchingRoomActivity : AppCompatActivity() {
 
@@ -47,6 +50,7 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
         this.setupDataAndTimeButtonListener()
         this.setupPlaceSelectButtonListener()
         this.setupSelectedButtonsListener()
+        this.setupBeforeMatchInfoButtonListener()
     }
 
     fun setupDataAndTimeButtonListener() {
@@ -60,6 +64,13 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
         binding.placeSelectButton.setOnClickListener {
             val placeSelectFragment = PlaceSelectFragment()
             placeSelectFragment.show(supportFragmentManager, "PlaceSelectFragment")
+        }
+    }
+
+    fun setupBeforeMatchInfoButtonListener() {
+        binding.beforeMatchInfoButton.setOnClickListener {
+            val beforeMatchInfoFragment = BeforeMatchInfoFragment()
+            beforeMatchInfoFragment.show(supportFragmentManager, "BeforeMatchInfoFragment")
         }
     }
 
@@ -83,6 +94,17 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
 
         for ((index, value) in iterator.withIndex()) {
             value.setTag(index)
+        }
+    }
+
+    fun setupNextButtonListener() {
+        this.binding.nextButtonFromMakeRoom.setOnClickListener {
+            //TODO: 다음 Activity를 생성한다.
+//            val matchingListIntent = Intent(this, MakeTeamMatchingRoomActivity::class.java)
+//            val matchingType = MatchType.TEAM
+//            matchingListIntent.putExtra("data", matchingType as Serializable)
+//
+//            this.startActivity(matchingListIntent)
         }
     }
 

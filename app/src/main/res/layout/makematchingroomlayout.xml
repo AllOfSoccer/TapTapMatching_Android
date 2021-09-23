@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/beforeMatchInfoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button8">
+            app:layout_constraintTop_toBottomOf="@+id/beforeMatchInfoButton">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,7 +188,7 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/button16"
+            android:id="@+id/nextButtonFromMakeRoom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="다음"
