@@ -2,10 +2,12 @@ package com.example.taptapmatching.MakeMatchingRoom
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.example.taptapmatching.databinding.ActivityMakeSecondTeamMatchingRoomBinding
 import com.example.taptapmatching.databinding.MakematchingroomlayoutBinding
 
-class MakeSecondTeamMatchingRoomActivity : AppCompatActivity() {
+class MakeSecondTeamMatchingRoomActivity : AppCompatActivity(), TeamIntructionFragmentDelegate {
 
     val binding by lazy { ActivityMakeSecondTeamMatchingRoomBinding.inflate(layoutInflater) }
 
@@ -28,7 +30,13 @@ class MakeSecondTeamMatchingRoomActivity : AppCompatActivity() {
     fun setupAddTeamInfoButton() {
         this.binding.addTeamInfoButton.setOnClickListener {
             val teamIntructionFragment = TeamIntructionFragment()
+            teamIntructionFragment.delegate = this
             teamIntructionFragment.show(supportFragmentManager, "TeamIntructionFragment")
         }
+    }
+
+    override fun onDataPass(data: List<TeamIntroductionInfo>) {
+        Log.d("isCalled?", "${data.map { it.text }}")
+        Toast.makeText(this, "${data.map { it.text }}", Toast.LENGTH_SHORT).show()
     }
 }

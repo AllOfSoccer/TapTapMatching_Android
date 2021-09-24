@@ -17,9 +17,15 @@ import com.example.taptapmatching.matchingMain.MatchingDataSource
 import com.example.taptapmatching.matchingMain.MatchingListRecycler
 import com.example.taptapmatching.matchingMain.MatchingListRecyclerDelegate
 
+interface TeamIntructionFragmentDelegate {
+    fun onDataPass(data: List<TeamIntroductionInfo>)
+}
+
 class TeamIntructionFragment: DialogFragment(), TeamIntroductionRecyclerDelegate {
     private var _binding: FragmentTeamIntruductionBinding? = null
     private val binding get() = _binding!!
+
+    var delegate: TeamIntructionFragmentDelegate? = null
 
     private var recycler = TeamIntroductionRecycler()
 
@@ -32,6 +38,7 @@ class TeamIntructionFragment: DialogFragment(), TeamIntroductionRecyclerDelegate
         val view = binding.root
 
         this.setupTeamIntroductionSampleRecyclerView()
+        this.setupTeamIntroductionSelectButton()
 
         return view
     }
@@ -41,10 +48,17 @@ class TeamIntructionFragment: DialogFragment(), TeamIntroductionRecyclerDelegate
         this.binding.teamIntructionSampleRecyclerView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
     }
 
+    fun setupTeamIntroductionSelectButton() {
+        this.binding.teamIntroductionSelectButton.setOnClickListener {
+            this.dismiss()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
-        Toast.makeText(this.context, "${this.recycler.listData.filter{ it.isSelected }.map{ it.text }}", Toast.LENGTH_SHORT).show()
+        val data = this.recycler.listData.filter{ it.isSelected }
+        this.delegate?.onDataPass(this.recycler.listData.filter{ it.isSelected })
     }
 
     override fun didSelect(matching: TeamIntroductionInfo) {
@@ -53,7 +67,7 @@ class TeamIntructionFragment: DialogFragment(), TeamIntroductionRecyclerDelegate
 }
 
 // MARK: - Data
-data class TeamIntroductionInfo(val text: String, var isSelected: Boolean)
+public data class TeamIntroductionInfo(val text: String, var isSelected: Boolean)
 
 // MARK: - Delegate
 interface TeamIntroductionRecyclerDelegate {
@@ -74,7 +88,7 @@ public class TeamIntroductionRecycler {
         TeamIntroductionInfo("매너있게 운동하실 분 기다립니다.", false),
         TeamIntroductionInfo("문자로 연락주세요.", false),
         TeamIntroductionInfo("연락 시 팀 소개 부탁드립니다.",false),
-        TeamIntroductionInfo("직접입", false)
+        TeamIntroductionInfo("직접입력해주세요.", false)
     )
 
     class CustomAdapter(listData: MutableList<TeamIntroductionInfo>): RecyclerView.Adapter<Holder>() {
