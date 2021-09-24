@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Setting.SettingActivity">
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mainTabLayout2"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="#D51010"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
