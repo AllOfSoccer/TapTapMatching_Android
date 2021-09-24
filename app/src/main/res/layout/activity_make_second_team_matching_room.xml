@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/teamIntrudctionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="146dp"
@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button16">
+        app:layout_constraintTop_toBottomOf="@+id/teamIntrudctionButton">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,13 +167,13 @@
                 </TableLayout>
 
                 <Button
-                    android:id="@+id/button22"
+                    android:id="@+id/addTeamInfoButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Button"
+                    android:text="글 추가 +"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
@@ -187,7 +187,7 @@
                     android:text="연락처"
                     android:textColor="#090909"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button22" />
+                    app:layout_constraintTop_toBottomOf="@+id/addTeamInfoButton" />
 
                 <Button
                     android:id="@+id/button23"

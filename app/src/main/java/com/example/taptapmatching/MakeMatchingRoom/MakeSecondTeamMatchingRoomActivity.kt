@@ -13,5 +13,22 @@ class MakeSecondTeamMatchingRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.setContentView(binding.root)
+
+        this.setupTeamIntruductionButton()
+        this.setupAddTeamInfoButton()
+    }
+
+    fun setupTeamIntruductionButton() {
+        this.binding.teamIntrudctionButton.setOnClickListener {
+            val teamIntructionFragment = TeamIntructionFragment()
+            teamIntructionFragment.show(supportFragmentManager, "TeamIntructionFragment")
+        }
+    }
+
+    fun setupAddTeamInfoButton() {
+        this.binding.addTeamInfoButton.setOnClickListener {
+            val teamIntructionFragment = TeamIntructionFragment()
+            teamIntructionFragment.show(supportFragmentManager, "TeamIntructionFragment")
+        }
     }
 }
