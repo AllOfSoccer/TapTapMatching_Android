@@ -93,7 +93,8 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
     }
 
     fun setupTabLayout() {
-        binding.mainTabLayout.addTab(binding.mainTabLayout.newTab().setText("경기 매칭"))
+        val mathchingTab = binding.mainTabLayout.newTab().setText("경기 매칭")
+        binding.mainTabLayout.addTab(mathchingTab)
         binding.mainTabLayout.addTab(binding.mainTabLayout.newTab().setText("설정"))
 
         binding.mainTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -104,6 +105,8 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
 
                     listView.startActivity(intent)
+
+                    listView.binding.mainTabLayout.selectTab(mathchingTab)
                 }
             }
 
