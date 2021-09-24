@@ -95,6 +95,10 @@ public class TeamIntroductionRecycler {
 
         private var listData = listData
 
+        fun update(listData: MutableList<TeamIntroductionInfo>) {
+            this.listData = listData
+        }
+
         var delegate: TeamIntroductionRecyclerDelegate? = null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
