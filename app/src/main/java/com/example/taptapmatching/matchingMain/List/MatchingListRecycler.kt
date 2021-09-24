@@ -44,10 +44,10 @@ public class MatchingListRecycler {
         }
     }
 
+    //RecyclerView.Holder가 하는 역할? --> 데이터를 매칭 시킨다. 데이터 바인딩을 함.
     class Holder(val binding: MatchingListLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun setMatching(matching: MatchingData) {
-            Log.d("MatchingListRecycler", "몇번 호출 될까?")
             binding.bottomTime.text = "${matching.time}"
             binding.topDate.text = "${matching.time}"
             binding.locationNameTextView.text = matching.location
