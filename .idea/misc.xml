@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../layout/custom_preview.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/layout/activity_make_second_team_matching_room.xml" value="0.28433611118902236" />
         <entry key="app/src/main/res/layout/activity_make_team_matching_room.xml" value="0.10169916329950668" />
         <entry key="app/src/main/res/layout/activity_matching_list_view.xml" value="0.23697916666666666" />

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".Setting.SettingActivity"
+            android:exported="true" />
+        <activity
             android:name=".MakeMatchingRoom.MakeSecondTeamMatchingRoomActivity"
             android:exported="true" />
         <activity android:name=".MakeMatchingRoom.MakeTeamMatchingRoomActivity" />

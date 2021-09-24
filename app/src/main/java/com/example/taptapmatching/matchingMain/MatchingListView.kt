@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taptapmatching.MakeMatchingRoom.MakeSecondTeamMatchingRoomActivity
 import com.example.taptapmatching.MakeMatchingRoom.MakeTeamMatchingRoomActivity
 import com.example.taptapmatching.MatchingDetail.MatchingDetailActivity
+import com.example.taptapmatching.Setting.SettingActivity
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
 import com.example.taptapmatching.matchingMain.SelectSorting.OrderSortingFragment
@@ -96,15 +98,21 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
 
         binding.mainTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                Log.d("mainTabLayout", "onTabSelected ${tab?.text}")
+                if (tab?.text == "설정") {
+                    val listView = this@MatchingListView
+                    val intent = android.content.Intent(listView, SettingActivity::class.java)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+
+                    listView.startActivity(intent)
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                Log.d("mainTabLayout", "onTabUnselected ${tab?.text}")
+                //Log.d("mainTabLayout", "onTabUnselected ${tab?.text}")
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                Log.d("mainTabLayout", "onTabReselected ${tab?.text}")
+                //Log.d("mainTabLayout", "onTabReselected ${tab?.text}")
             }
         })
     }
