@@ -48,8 +48,8 @@ public class MatchingListRecycler {
     class Holder(val binding: MatchingListLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun setMatching(matching: MatchingData) {
-            binding.bottomTime.text = "${matching.time}"
-            binding.topDate.text = "${matching.time}"
+//            binding.bottomTime.text = "${matching.time}"
+//            binding.topDate.text = "${matching.time}"
             binding.locationNameTextView.text = matching.location
             binding.detailTextView.text = "조합해서 만들어야합니다!!!!"
             //binding.recruitStateTextView.text = "모집중"

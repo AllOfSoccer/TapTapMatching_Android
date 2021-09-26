@@ -118,7 +118,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="17dp"
         android:layout_marginBottom="10dp"
-        android:background="#559509"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/mainTabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
