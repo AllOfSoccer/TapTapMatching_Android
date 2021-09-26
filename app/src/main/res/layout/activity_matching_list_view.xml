@@ -40,8 +40,7 @@
         android:layout_marginBottom="93dp"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -83,16 +82,14 @@
         app:layout_constraintTop_toBottomOf="@+id/teamButton" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/seperateView"
         android:layout_width="411dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="168dp"
-        android:layout_marginBottom="420dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:background="#EEEFF1"
-        app:layout_constraintBottom_toTopOf="@+id/addMatchingButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/smallCalendarRecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/smallCalendarRecyclerView"
@@ -110,23 +107,23 @@
         android:id="@+id/filterRecyclerView"
         android:layout_width="409dp"
         android:layout_height="45dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/seperateView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/matchingListRecyclerView"
         android:layout_width="409dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="10dp"
         android:background="#559509"
         app:layout_constraintBottom_toTopOf="@+id/mainTabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.tabs.TabLayout
