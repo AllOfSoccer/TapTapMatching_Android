@@ -16,6 +16,7 @@ class SettingActivity : AppCompatActivity() {
 
         this.setContentView(this.binding.root)
         this.setupTabLayout()
+        this.setupTeamDetailConstraintLayout()
     }
 
     override fun onBackPressed() {
@@ -28,6 +29,12 @@ class SettingActivity : AppCompatActivity() {
         super.finish()
 
         overridePendingTransition(0,0)
+    }
+
+    fun setupTeamDetailConstraintLayout() {
+        this.binding.detailTeamInfoConstraintLayout.setOnClickListener {
+            Log.d("what", "팀 정보 ")
+        }
     }
 
     fun setupTabLayout() {
