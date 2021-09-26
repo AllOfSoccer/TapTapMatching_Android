@@ -52,7 +52,7 @@ public class MatchingListRecycler {
             binding.topDate.text = "${matching.time}"
             binding.locationNameTextView.text = matching.location
             binding.detailTextView.text = "조합해서 만들어야합니다!!!!"
-            binding.recruitStateTextView.text = "모집중"
+            //binding.recruitStateTextView.text = "모집중"
         }
     }
 }
