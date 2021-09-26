@@ -229,15 +229,12 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         Log.d("MatchingListView", "applyList ${list}")
     }
 
+    // 매칭 디테일 뷰 띄우기.
     override fun didSelect(matching: MatchingData) {
-        //내비게이션 Fragment 띄우기
-
         val matchingListIntent = Intent(this, MatchingDetailActivity::class.java)
         matchingListIntent.putExtra("data", matching as Serializable)
 
         this.startActivity(matchingListIntent)
-
-        Log.d("matchingListView", "${matching}")
     }
 
     override fun didSelect(selectedDate: LocalDate) {
