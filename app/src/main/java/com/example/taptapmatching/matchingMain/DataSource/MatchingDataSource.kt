@@ -59,10 +59,14 @@ class MatchingDataSource {
 
     fun getData(): MutableList<MatchingData> {
         val call = ListClient.service
+        var result: MutableList<MatchingData> = mutableListOf()
 
         call.getList().enqueue(object: Callback<test1> {
             override fun onResponse(call: Call<test1>, response: Response<test1>) {
-                Log.d("APITest", "${response.body()}")
+                val result = response.body()?.result?.toMutableList()
+
+                val temp = convert(result)
+                Log.d("APITest", "${temp}")
             }
 
             override fun onFailure(call: Call<test1>, t: Throwable) {
@@ -71,6 +75,14 @@ class MatchingDataSource {
         })
 
         return MatchingDataSource.shared.list
+    }
+
+    fun convert(list: MutableList<test2>?): MutableList<MatchingData> {
+        if (list?.isNotEmpty() == true) {
+            return list.map { MatchingData(LocalDate.now(), it.locationFull, it.playerCnt.toInt(), Gender.FEMALE, it.teamName, true, true) }.toMutableList()
+        } else {
+            return mutableListOf()
+        }
     }
 
     init {
