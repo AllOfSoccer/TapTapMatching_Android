@@ -1,7 +1,9 @@
 package com.example.taptapmatching.matchingMain
 
+import android.graphics.Rect
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -54,5 +56,18 @@ public class MatchingListRecycler {
             binding.detailTextView.text = "조합해서 만들어야합니다!!!!"
             //binding.recruitStateTextView.text = "모집중"
         }
+    }
+}
+
+public class DividerItemDecoration: RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        super.getItemOffsets(outRect, view, parent, state)
+
+        outRect.bottom = 8
     }
 }

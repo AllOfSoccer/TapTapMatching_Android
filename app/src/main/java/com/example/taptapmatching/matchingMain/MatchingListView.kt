@@ -208,6 +208,9 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
 
         binding.matchingListRecyclerView.adapter = adapter
         binding.matchingListRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        val dividerItemDecoration = DividerItemDecoration()
+        binding.matchingListRecyclerView.addItemDecoration(dividerItemDecoration)
     }
 
     override fun didSelectFilterType(type: MatchingFilterRecycler.FilterType) {
