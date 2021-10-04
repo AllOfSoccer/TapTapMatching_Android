@@ -1,6 +1,29 @@
 package com.example.taptapmatching.matchingMain
+import android.util.Log
 import java.io.Serializable
 import java.time.LocalDate
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Headers
+
+class ListAPI {
+    companion object {
+        const val baseURL = "http://3.37.196.89:8080"
+    }
+}
+
+
+interface Retrofit_Service {
+    @Headers("tab-user-id: 2")
+    @GET("${ListAPI.baseURL}/api/v1/tabtab/post/monthly?yyyyMM=202108")
+
+    fun getList(): Call<test1>
+}
 
 enum class Gender {
     FEMALE,
@@ -16,12 +39,38 @@ data class MatchingData(val time: LocalDate,
                         val isFindNow: Boolean): Serializable {
 }
 
+object ListClient {
+    private val client: Retrofit.Builder by lazy {
+        Retrofit.Builder().baseUrl(ListAPI.baseURL).addConverterFactory(GsonConverterFactory.create())
+    }
+
+    val service: Retrofit_Service by lazy {
+        client.build().create(Retrofit_Service::class.java)
+    }
+}
+
 class MatchingDataSource {
 
     var list: MutableList<MatchingData> = mutableListOf()
 
     companion object {
         val shared = MatchingDataSource()
+    }
+
+    fun getData(): MutableList<MatchingData> {
+        val call = ListClient.service
+
+        call.getList().enqueue(object: Callback<test1> {
+            override fun onResponse(call: Call<test1>, response: Response<test1>) {
+                Log.d("APITest", "${response.body()}")
+            }
+
+            override fun onFailure(call: Call<test1>, t: Throwable) {
+                Log.d("APITest", "failure")
+            }
+        })
+
+        return MatchingDataSource.shared.list
     }
 
     init {
@@ -55,3 +104,34 @@ class MatchingDataSource {
     }
 
 }
+
+data class test1 (
+    val resultType: String,
+    val result: List<test2>
+)
+
+data class test2 (
+    val id: Long,
+    val userID: Int,
+    val matchDatetime: String,
+    val matchYearMonth: Long,
+    val locationTitle: String,
+    val locationFull: String,
+    val locationX: Double,
+    val locationY: Double,
+    val playerCnt: Long,
+    val playerGender: String,
+    val shoesType: String,
+    val playFee: Long,
+    val uniformTop: String,
+    val uniformBottom: String,
+    val teamName: String,
+    val phone: String,
+    val ageRangeStart: Long,
+    val ageRangeEnd: Long,
+    val skillLevel: Long,
+    val description: String,
+    val createdAt: String,
+    val updatedAt: String,
+    val isMe: Boolean
+)

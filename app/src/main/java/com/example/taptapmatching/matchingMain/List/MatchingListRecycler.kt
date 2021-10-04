@@ -17,7 +17,7 @@ interface MatchingListRecyclerDelegate {
 
 public class MatchingListRecycler {
     fun loadData(): MutableList<MatchingData> {
-        return MatchingDataSource.shared.list
+        return MatchingDataSource.shared.getData()
     }
 
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
@@ -68,6 +68,6 @@ public class DividerItemDecoration: RecyclerView.ItemDecoration() {
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        outRect.bottom = 8
+        outRect.bottom = 16
     }
 }

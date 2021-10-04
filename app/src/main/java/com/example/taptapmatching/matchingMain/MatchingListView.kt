@@ -201,7 +201,7 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
     }
 
     fun setupMatchingListRecylcer() {
-        val data: MutableList<MatchingData> = matchingListRecycler.loadData()
+        val data: MutableList<MatchingData> = matchingListRecycler.loadData() //이 시점에 데이터를 요청한다.
         var adapter = MatchingListRecycler.CustomAdapter()
         adapter.listData = data
         adapter.delegate = this
