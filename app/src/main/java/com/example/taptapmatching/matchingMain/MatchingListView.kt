@@ -201,16 +201,21 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
     }
 
     fun setupMatchingListRecylcer() {
-        val data: MutableList<MatchingData> = matchingListRecycler.loadData() //이 시점에 데이터를 요청한다.
-        var adapter = MatchingListRecycler.CustomAdapter()
-        adapter.listData = data
-        adapter.delegate = this
+        matchingListRecycler.loadData() { result ->
+            val data: MutableList<MatchingData> = result
 
-        binding.matchingListRecyclerView.adapter = adapter
-        binding.matchingListRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            var adapter = MatchingListRecycler.CustomAdapter()
+            adapter.listData = data
+            adapter.delegate = this
 
-        val dividerItemDecoration = DividerItemDecoration()
-        binding.matchingListRecyclerView.addItemDecoration(dividerItemDecoration)
+            Log.d("dataSetChanged?", "${data.map{ it.teamName }}")
+
+            binding.matchingListRecyclerView.adapter = adapter
+            binding.matchingListRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+            val dividerItemDecoration = DividerItemDecoration()
+            binding.matchingListRecyclerView.addItemDecoration(dividerItemDecoration)
+        }
     }
 
     override fun didSelectFilterType(type: MatchingFilterRecycler.FilterType) {

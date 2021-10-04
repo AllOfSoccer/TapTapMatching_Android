@@ -57,15 +57,15 @@ class MatchingDataSource {
         val shared = MatchingDataSource()
     }
 
-    fun getData(): MutableList<MatchingData> {
+    fun getData(myCallback: (callBackValue: MutableList<MatchingData>) -> Unit) {
         val call = ListClient.service
-        var result: MutableList<MatchingData> = mutableListOf()
+        var resultValue: MutableList<MatchingData> = mutableListOf()
 
         call.getList().enqueue(object: Callback<test1> {
             override fun onResponse(call: Call<test1>, response: Response<test1>) {
                 val result = response.body()?.result?.toMutableList()
-
-                val temp = convert(result)
+                var temp = convert(result)
+                myCallback.invoke(temp)
                 Log.d("APITest", "${temp}")
             }
 
@@ -73,8 +73,6 @@ class MatchingDataSource {
                 Log.d("APITest", "failure")
             }
         })
-
-        return MatchingDataSource.shared.list
     }
 
     fun convert(list: MutableList<test2>?): MutableList<MatchingData> {

@@ -16,8 +16,10 @@ interface MatchingListRecyclerDelegate {
 }
 
 public class MatchingListRecycler {
-    fun loadData(): MutableList<MatchingData> {
-        return MatchingDataSource.shared.getData()
+    fun loadData(myCallback: (callBackValue: MutableList<MatchingData>) -> Unit) {
+        MatchingDataSource.shared.getData() { result ->
+            myCallback.invoke(result)
+        }
     }
 
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
@@ -53,7 +55,7 @@ public class MatchingListRecycler {
 //            binding.bottomTime.text = "${matching.time}"
 //            binding.topDate.text = "${matching.time}"
             binding.locationNameTextView.text = matching.location
-            binding.detailTextView.text = "조합해서 만들어야합니다!!!!"
+            binding.detailTextView.text = "${matching.teamName}" //TODO: 임의로 teamName넣었음. detail로 바꿔야함
             //binding.recruitStateTextView.text = "모집중"
         }
     }
