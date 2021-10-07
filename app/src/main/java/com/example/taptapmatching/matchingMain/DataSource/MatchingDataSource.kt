@@ -70,6 +70,7 @@ class MatchingDataSource {
             }
 
             override fun onFailure(call: Call<test1>, t: Throwable) {
+                myCallback.invoke(MatchingDataSource.shared.list)
                 Log.d("APITest", "failure")
             }
         })
@@ -86,11 +87,11 @@ class MatchingDataSource {
     init {
         var result: MutableList<MatchingData> = mutableListOf()
 
-        val temp = MatchingData(LocalDate.now(), "용산 더 베이스1", 6, Gender.FEMALE, "토토", true, true)
-        val temp2 = MatchingData(LocalDate.now(), "용산 더 베이스2", 6, Gender.FEMALE, "토토", true, true)
-        val temp3 = MatchingData(LocalDate.now(), "용산 더 베이스3", 6, Gender.FEMALE, "토토", true, true)
-        val temp4 = MatchingData(LocalDate.now(), "용산 더 베이스4", 6, Gender.FEMALE, "토토", true, true)
-        val temp5 = MatchingData(LocalDate.now(), "용산 더 베이스5", 6, Gender.FEMALE, "토토", true, true)
+        val temp = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
+        val temp2 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
+        val temp3 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
+        val temp4 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
+        val temp5 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
         val temp6 = MatchingData(LocalDate.now(), "용산 더 베이스6", 6, Gender.FEMALE, "토토", true, true)
         val temp7 = MatchingData(LocalDate.now(), "용산 더 베이스7", 6, Gender.FEMALE, "토토", true, true)
         val temp8 = MatchingData(LocalDate.now(), "용산 더 베이스8", 6, Gender.FEMALE, "토토", true, true)
