@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,7 @@
         android:layout_width="267dp"
         android:layout_height="305dp"
         android:layout_gravity="center_horizontal|center_vertical"
-        android:background="#FFEB3B">
+        android:background="#FFFFFF">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dialogRecyclerView"
@@ -18,26 +19,14 @@
             android:layout_marginTop="70dp"
             android:orientation="horizontal" />
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이전" />
-
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:text="다음" />
-
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/mainCalendarMonthTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top"
             android:layout_margin="20dp"
-            android:text="6월" />
+            android:text="6월"
+            android:textColor="#020202" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -119,6 +108,24 @@
             android:background="#38406E">
 
         </androidx.viewpager2.widget.ViewPager2>
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/polygonleft" />
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/polygonright" />
 
     </FrameLayout>
 
