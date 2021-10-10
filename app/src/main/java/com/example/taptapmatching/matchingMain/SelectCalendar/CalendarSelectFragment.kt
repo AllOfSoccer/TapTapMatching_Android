@@ -37,6 +37,7 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // 시작시 필요 데이터: 현재 월, 현재 선택된 일자
         _binding = FragmentCalendarSelectBinding.inflate(inflater, container, false)
         val view = binding.root
 
