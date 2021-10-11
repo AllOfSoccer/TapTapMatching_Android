@@ -13,11 +13,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 public class DialogCalendarRecycler {
-    data class SmallDate(var weakDay: String, var date: LocalDate)
+    data class SmallDate(var weakDay: String, var date: LocalDate, var isEmptyDate: Boolean)
 
     fun loadData(position: Int): MutableList<SmallDate> {
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
-        
         return this.getNextMonthDate(position.toLong())
     }
 
@@ -27,11 +26,51 @@ public class DialogCalendarRecycler {
         val today = LocalDate.now().plusMonths(nextMonth)
         val formattedToday = today.format(DateTimeFormatter.ofPattern("d")).toInt()-1
 
+        // 1일의 요일을 알아낸다.
+        // 1일의 요일이 일요일이다 --> 그대로
+        // 1일의 요일이 월요일이다 --> 1루 emptyDate를 넣는다.
+
         for (no in -formattedToday..0) {
             val tomorrow = LocalDate.now().plusMonths(nextMonth).plusDays(no.toLong())
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
-            var smallDate = SmallDate("${formattedTomorrow}", tomorrow)
+            var smallDate = SmallDate("${formattedTomorrow}", tomorrow, false)
+
+            Log.d("dateTest11231231123", "${smallDate}")
             data.add(smallDate)
+        }
+
+        val first = data.first()
+        val emptyDate = SmallDate("${formattedToday}", LocalDate.now(), true)
+
+        if (first.date.dayOfWeek == DayOfWeek.SUNDAY) {
+
+        } else if (first.date.dayOfWeek == DayOfWeek.MONDAY) {
+            data.add(0, emptyDate)
+        } else if (first.date.dayOfWeek == DayOfWeek.TUESDAY) {
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+        } else if (first.date.dayOfWeek == DayOfWeek.WEDNESDAY) {
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+        } else if (first.date.dayOfWeek == DayOfWeek.THURSDAY) {
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+        } else if (first.date.dayOfWeek == DayOfWeek.FRIDAY) {
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+        } else if (first.date.dayOfWeek == DayOfWeek.SATURDAY) {
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
+            data.add(0, emptyDate)
         }
 
         var currentDay: Int = 0
@@ -39,12 +78,12 @@ public class DialogCalendarRecycler {
         for (no in 1..31) {
             val tomorrow = LocalDate.now().plusMonths(nextMonth).plusDays(no.toLong())
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
-            var smallDate = SmallDate("${formattedTomorrow}", tomorrow)
+            var smallDate = SmallDate("${formattedTomorrow}", tomorrow, false)
 
             val tempDay = formattedTomorrow.toInt()
 
             if (tempDay > currentDay) {
-                Log.d("dateTest", "${tempDay}, ${currentDay}")
+                Log.d("dateTest11231231123", "${tempDay}, ${currentDay}")
                 data.add(smallDate)
             } else {
                 break
@@ -98,7 +137,12 @@ public class DialogCalendarRecycler {
                 binding.dialogWeakDay.setTextColor(Color.BLACK)
             }
 
-            binding.dialogWeakDay.text = smallDate.weakDay
+            if (smallDate.isEmptyDate == true) {
+                binding.dialogWeakDay.text = ""
+            } else {
+                binding.dialogWeakDay.text = smallDate.weakDay
+            }
+
         }
     }
 }
