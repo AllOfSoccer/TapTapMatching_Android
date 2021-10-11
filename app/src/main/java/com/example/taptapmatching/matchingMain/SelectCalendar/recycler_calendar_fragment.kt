@@ -16,7 +16,6 @@ class recycler_calendar_fragment(private var position: Int) : Fragment() {
     private var _binding: FragmentRecyclerCalendarFragmentBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

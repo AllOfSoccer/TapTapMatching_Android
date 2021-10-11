@@ -14,7 +14,6 @@ public class DialogCalendarRecycler {
     data class SmallDate(var weakDay: String, var date: LocalDate)
 
     fun loadData(position: Int): MutableList<SmallDate> {
-        Log.d("DialogCalendarRecycler", "position ${position}")
         val data: MutableList<SmallDate> = mutableListOf() // 컬렉션을 선언
         
         return this.getNextMonthDate(position.toLong())
