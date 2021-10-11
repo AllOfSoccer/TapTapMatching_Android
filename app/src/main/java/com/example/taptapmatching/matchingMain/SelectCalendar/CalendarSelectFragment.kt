@@ -20,7 +20,7 @@ import java.time.LocalDate
 import java.time.Month
 
 interface CalendarDialogDelegate {
-    fun didSelect(dates: MutableSet<LocalDate>)
+    fun didSelect(dates: MutableSet<DialogCalendarRecycler.SmallDate>)
 }
 
 interface MainCalendarCustomAdapterDelegte {
@@ -29,7 +29,7 @@ interface MainCalendarCustomAdapterDelegte {
 
 class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainCalendarCustomAdapterDelegte {
 
-    var selectedDates: MutableSet<LocalDate> = mutableSetOf()
+    var selectedDates: MutableSet<DialogCalendarRecycler.SmallDate> = mutableSetOf()
 
     private var _binding: FragmentCalendarSelectBinding? = null
     private val binding get() = _binding!!
@@ -64,6 +64,7 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
     fun changeShowingMonth(next: Int) {
         lastPosition = lastPosition + next
 
+        Log.d("123123123", "${lastPosition}")
         if (lastPosition > 0) {
             val currentText: kotlin.Int = binding.mainCalendarMonthTextView.text.toString().toInt()
 
@@ -152,7 +153,7 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
         }
     }
 
-    override fun didSelect(dates: MutableSet<LocalDate>) {
+    override fun didSelect(dates: MutableSet<DialogCalendarRecycler.SmallDate>) {
         this.selectedDates = dates
     }
 

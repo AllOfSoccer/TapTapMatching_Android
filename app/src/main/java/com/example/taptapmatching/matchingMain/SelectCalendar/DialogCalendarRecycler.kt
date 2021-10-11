@@ -26,16 +26,10 @@ public class DialogCalendarRecycler {
         val today = LocalDate.now().plusMonths(nextMonth)
         val formattedToday = today.format(DateTimeFormatter.ofPattern("d")).toInt()-1
 
-        // 1일의 요일을 알아낸다.
-        // 1일의 요일이 일요일이다 --> 그대로
-        // 1일의 요일이 월요일이다 --> 1루 emptyDate를 넣는다.
-
         for (no in -formattedToday..0) {
             val tomorrow = LocalDate.now().plusMonths(nextMonth).plusDays(no.toLong())
             val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("d"))
             var smallDate = SmallDate("${formattedTomorrow}", tomorrow, false)
-
-            Log.d("dateTest11231231123", "${smallDate}")
             data.add(smallDate)
         }
 
@@ -83,7 +77,6 @@ public class DialogCalendarRecycler {
             val tempDay = formattedTomorrow.toInt()
 
             if (tempDay > currentDay) {
-                Log.d("dateTest11231231123", "${tempDay}, ${currentDay}")
                 data.add(smallDate)
             } else {
                 break
@@ -98,7 +91,7 @@ public class DialogCalendarRecycler {
     class CustomAdapter: RecyclerView.Adapter<Holder>() {
 
         var listData = mutableListOf<SmallDate>()
-        var storeListData = mutableSetOf<LocalDate>()
+        var storeListData = mutableSetOf<SmallDate>()
 
         public var delegate: CalendarDialogDelegate? = null
 
@@ -119,9 +112,19 @@ public class DialogCalendarRecycler {
             holder.setMemo(currentDate)
 
             holder.binding.root.setOnClickListener {
-                storeListData.add(currentDate.date)
+                storeListData.add(currentDate)
                 this.delegate?.didSelect(storeListData)
-                Toast.makeText(holder.binding.root.context, "${storeListData}", Toast.LENGTH_LONG).show()
+
+                if (it.isSelected == false) {
+                    holder.binding.dialogWeakDay.setBackgroundColor(Color.BLACK)
+                } else {
+                    holder.binding.dialogWeakDay.setBackgroundColor(Color.WHITE)
+                }
+
+                it.setSelected(!it.isSelected)
+                holder.binding.dialogWeakDay.isSelected
+
+                Toast.makeText(holder.binding.root.context, "${it.isSelected}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -142,7 +145,6 @@ public class DialogCalendarRecycler {
             } else {
                 binding.dialogWeakDay.text = smallDate.weakDay
             }
-
         }
     }
 }

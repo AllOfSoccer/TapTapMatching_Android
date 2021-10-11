@@ -16,6 +16,7 @@ import com.example.taptapmatching.MatchingDetail.MatchingDetailActivity
 import com.example.taptapmatching.Setting.SettingActivity
 import com.example.taptapmatching.databinding.ActivityMatchingListViewBinding
 import com.example.taptapmatching.matchingMain.*
+import com.example.taptapmatching.matchingMain.SelectCalendar.DialogCalendarRecycler
 import com.example.taptapmatching.matchingMain.SelectSorting.OrderSortingFragment
 import com.example.taptapmatching.matchingMain.SmallCalendar.MatchingCalendarRecycler
 import com.example.taptapmatching.matchingMain.SmallCalendar.MatchingCalendarRecyclerDelegate
@@ -32,7 +33,7 @@ enum class MatchType {
 
 class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, DetailFilteringFragementDelegate, MatchingListRecyclerDelegate, MatchingCalendarRecyclerDelegate {
 
-    var selectedDates: MutableSet<LocalDate> = mutableSetOf()
+    var selectedDates: MutableSet<DialogCalendarRecycler.SmallDate> = mutableSetOf()
     val binding by lazy { ActivityMatchingListViewBinding.inflate(layoutInflater) }
 
     var calendarRecycler = MatchingCalendarRecycler()
