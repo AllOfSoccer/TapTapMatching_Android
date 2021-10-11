@@ -34,20 +34,71 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
     private var _binding: FragmentCalendarSelectBinding? = null
     private val binding get() = _binding!!
 
+    private val currentMonthText: String
+        get() = LocalDate.now().month.value.toString()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // 시작시 필요 데이터: 현재 월, 현재 선택된 일자
         _binding = FragmentCalendarSelectBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.mainCalendarMonthTextView.text = LocalDate.now().month.value.toString()
-        Log.d("wndgus", "${LocalDate.now().dayOfMonth.toString()}, ${LocalDate.now()}")
+        binding.mainCalendarMonthTextView.text = currentMonthText
 
         this.setupViewPager2()
+        this.setupButtons()
 
         return view
     }
+
+    fun setupButtons() {
+        this.binding.nextButton.setOnClickListener {
+            this.changeShowingMonth(1)
+        }
+
+        this.binding.backButton.setOnClickListener {
+            this.changeShowingMonth(-1)
+        }
+    }
+
+    fun changeShowingMonth(next: Int) {
+        lastPosition = lastPosition + next
+
+        if (lastPosition > 0) {
+            val currentText: kotlin.Int = binding.mainCalendarMonthTextView.text.toString().toInt()
+
+            //월만 바꾸는게 아니라 일도 바꿔야
+            if (next == 1) {
+                if (currentText == 12) {
+                    binding.mainCalendarMonthTextView.text = "1"
+                } else {
+                    binding.mainCalendarMonthTextView.text = "${currentText + next}"
+                }
+            } else {
+                if (currentText == 1) {
+                    binding.mainCalendarMonthTextView.text = "12"
+                } else {
+                    binding.mainCalendarMonthTextView.text = "${currentText + next}"
+                }
+            }
+
+            binding.calendarViewPager.setCurrentItem(lastPosition, true)
+        }
+    }
+
+    fun makeNewMonth(current: Int, position: Int): Int {
+        val new = current + position
+
+        if (new > 12) {
+            return 1
+        } else if (new == 0) {
+            return 12
+        } else {
+            return new
+        }
+    }
+
+    private var lastPosition: Int = 0
 
     fun setupViewPager2() {
         val currentMonth = LocalDate.now().dayOfMonth
@@ -57,23 +108,21 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
 
         binding.calendarViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
 
-            var lastPosition: Int = 0
-
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                Log.d("setupViewPager", "Called ${position}")
+                this.changeShowingMonth(position)
+            }
 
+            fun changeShowingMonth(position: Int) {
                 val currentText: Int = binding.mainCalendarMonthTextView.text.toString().toInt()
 
                 if (lastPosition > position) {
-                    val a = makeNewMonth(currentText, -1)
-                    binding.mainCalendarMonthTextView.text = a.toString()
+                    binding.mainCalendarMonthTextView.text = this.makeNewMonth(currentText, -1).toString()
                 } else if (lastPosition == position) {
                     binding.mainCalendarMonthTextView.text = currentText.toString()
                 } else {
-                    val b = this.makeNewMonth(currentText, 1)
-                    binding.mainCalendarMonthTextView.text = b.toString()
+                    binding.mainCalendarMonthTextView.text = this.makeNewMonth(currentText, 1).toString()
                 }
 
                 lastPosition = position

@@ -1,5 +1,6 @@
 package com.example.taptapmatching.matchingMain.SelectCalendar
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taptapmatching.databinding.DialogCalendarLayoutBinding
 import com.example.taptapmatching.matchingMain.CalendarDialogDelegate
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -88,6 +90,14 @@ public class DialogCalendarRecycler {
     class Holder(val binding: DialogCalendarLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun setMemo(smallDate: SmallDate) {
+            if (smallDate.date.dayOfWeek == DayOfWeek.SATURDAY) {
+                binding.dialogWeakDay.setTextColor(Color.BLUE)
+            } else if (smallDate.date.dayOfWeek == DayOfWeek.SUNDAY) {
+                binding.dialogWeakDay.setTextColor(Color.RED)
+            } else {
+                binding.dialogWeakDay.setTextColor(Color.BLACK)
+            }
+
             binding.dialogWeakDay.text = smallDate.weakDay
         }
     }

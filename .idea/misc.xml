@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/activity_matching_detail.xml" value="0.28854166666666664" />
         <entry key="app/src/main/res/layout/activity_matching_list_view.xml" value="0.23697916666666666" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout/dialog_calendar_layout.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/layout/fragment_before_match_info.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_calendar_select.xml" value="0.43783783783783786" />
         <entry key="app/src/main/res/layout/fragment_detail_filtering.xml" value="0.171875" />
