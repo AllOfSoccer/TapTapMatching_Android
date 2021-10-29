@@ -47,8 +47,15 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
 
         this.setupViewPager2()
         this.setupButtons()
+        this.setupApplySelectedDates()
 
         return view
+    }
+
+    fun setupApplySelectedDates() {
+        binding.applySelectedDatesLayouts.setOnClickListener {
+            Log.d("선택된 날짜 프린트", "${this.selectedDates}")
+        }
     }
 
     fun setupButtons() {
@@ -64,7 +71,6 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
     fun changeShowingMonth(next: Int) {
         lastPosition = lastPosition + next
 
-        Log.d("123123123", "${lastPosition}")
         if (lastPosition > 0) {
             val currentText: kotlin.Int = binding.mainCalendarMonthTextView.text.toString().toInt()
 
@@ -155,6 +161,8 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
 
     override fun didSelect(dates: MutableSet<DialogCalendarRecycler.SmallDate>) {
         this.selectedDates = dates
+
+        Log.d("didSelectDates1", "${this.selectedDates}")
     }
 
     override fun didChangeMonth(to: Int) {

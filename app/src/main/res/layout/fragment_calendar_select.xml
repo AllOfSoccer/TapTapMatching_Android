@@ -29,11 +29,18 @@
             android:textColor="#020202" />
 
         <FrameLayout
+            android:id="@+id/applySelectedDatesLayouts"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_gravity="bottom"
             android:background="#E30909">
 
+            <TextView
+                android:id="@+id/applySelectedDatesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="선택 적용하기 (x건)" />
         </FrameLayout>
 
         <LinearLayout
