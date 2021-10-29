@@ -25,6 +25,10 @@ interface Retrofit_Service {
                         @Body req: TabUser
     ): Call<ApiResponse<TabUser>>
 
+    @POST("${ListAPI.baseURL}/api/v1/tabtab/user")
+    fun requestFixRegister(@Header("secret") secret: String,
+                           @Body req: UserFix
+    ): Call<ApiResponse<UserFix>>
 }
 
 enum class Gender {
@@ -81,7 +85,7 @@ class MatchingDataSource {
 
     fun registerId() {
         val call = ListClient.service
-        val reqBody = TabUser(null,"1","2","3","secret")
+        val reqBody = TabUser(1001,"1","2","3")
 
         call.requestRegister(secret = "testgogo", req = reqBody).enqueue(object: Callback<ApiResponse<TabUser>> {
 
@@ -89,14 +93,35 @@ class MatchingDataSource {
                 call: Call<ApiResponse<TabUser>>,
                 response: Response<ApiResponse<TabUser>>
             ) {
-                Log.d("APITest", "requestRegister onResponse ${response.isSuccessful}" +
+                Log.d("APITest", "requestTest onResponse ${response.isSuccessful}" +
                         "\n ${response.body()}")
             }
 
             override fun onFailure(call: Call<ApiResponse<TabUser>>, t: Throwable) {
-                Log.d("APITest", "requestRegister onFailure")
+                Log.d("APITest", "requestTest onFailure")
             }
         })
+    }
+
+    fun requestFix() {
+        val call = ListClient.service
+        val reqBody = UserFix(5, "z", "z", "z", 1001, "z", "z", "z", "z", 5, "z")
+
+        call.requestFixRegister(secret = "testgogo", req = reqBody).enqueue(object: Callback<ApiResponse<UserFix>> {
+
+            override fun onResponse(
+                call: Call<ApiResponse<UserFix>>,
+                response: Response<ApiResponse<UserFix>>
+            ) {
+                Log.d("APITest", "requestTest fix onResponse ${response.isSuccessful}" +
+                        "\n ${response.body()}")
+            }
+
+            override fun onFailure(call: Call<ApiResponse<UserFix>>, t: Throwable) {
+                Log.d("APITest", "requestTest fix onFailure")
+            }
+        })
+
     }
 
     fun convert(list: MutableList<test2>?): MutableList<MatchingData> {
@@ -175,9 +200,22 @@ data class TabUser(
     val name : String,
     val email : String,
     val phone : String,
-    val secret: String,
     val createdAt: String? = null,
     val updatedAt: String? = null,
+)
+
+data class UserFix(
+    val ageRange : Int,
+    val displayName: String,
+    val displayPhone: String,
+    val email: String,
+    val id: Int,
+    val introduction: String,
+    val name: String,
+    val phone: String,
+    val profileImgUrl: String,
+    val skillLevel: Int,
+    val teamIds: String,
 )
 
 data class ApiResponse<T> (

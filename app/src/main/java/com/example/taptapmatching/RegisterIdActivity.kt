@@ -19,7 +19,10 @@ class RegisterIdActivity : AppCompatActivity() {
         this.binding.requestRegisterId.setOnClickListener {
             //아이디 등록 요청.
             MatchingDataSource.shared.registerId()
-            Log.d("RegisterId", "RequestRegisterId")
+        }
+
+        this.binding.fixButton.setOnClickListener {
+            MatchingDataSource.shared.requestFix()
         }
     }
 }
