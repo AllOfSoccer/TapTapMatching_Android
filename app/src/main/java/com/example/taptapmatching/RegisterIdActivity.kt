@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.taptapmatching.databinding.ActivityRecyclerViewBinding
 import com.example.taptapmatching.databinding.ActivityRegisterIdBinding
+import com.example.taptapmatching.matchingMain.MatchingDataSource
 
 class RegisterIdActivity : AppCompatActivity() {
 
@@ -17,6 +18,7 @@ class RegisterIdActivity : AppCompatActivity() {
 
         this.binding.requestRegisterId.setOnClickListener {
             //아이디 등록 요청.
+            MatchingDataSource.shared.registerId()
             Log.d("RegisterId", "RequestRegisterId")
         }
     }

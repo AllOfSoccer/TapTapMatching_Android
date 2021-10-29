@@ -1,15 +1,10 @@
 package com.example.taptapmatching.matchingMain
 import android.util.Log
+import retrofit2.*
 import java.io.Serializable
 import java.time.LocalDate
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Headers
+import retrofit2.http.*
 
 class ListAPI {
     companion object {
@@ -21,8 +16,15 @@ class ListAPI {
 interface Retrofit_Service {
     @Headers("tab-user-id: 2")
     @GET("${ListAPI.baseURL}/api/v1/tabtab/post/monthly?yyyyMM=202108")
-
     fun getList(): Call<test1>
+
+
+
+    @POST("${ListAPI.baseURL}/api/v1/tabtab/user/add")
+    fun requestRegister(@Header("secret") secret: String,
+                        @Body req: TabUser
+    ): Call<ApiResponse<TabUser>>
+
 }
 
 enum class Gender {
@@ -72,6 +74,26 @@ class MatchingDataSource {
             override fun onFailure(call: Call<test1>, t: Throwable) {
                 myCallback.invoke(MatchingDataSource.shared.list)
                 Log.d("APITest", "failure")
+            }
+        })
+    }
+
+    fun registerId() {
+        val call = ListClient.service
+        val reqBody = TabUser(null,"1","2","3")
+
+        call.requestRegister(secret = "testgogo", req = reqBody).enqueue(object: Callback<ApiResponse<TabUser>> {
+
+            override fun onResponse(
+                call: Call<ApiResponse<TabUser>>,
+                response: Response<ApiResponse<TabUser>>
+            ) {
+                Log.d("APITest", "requestRegister onResponse ${response.isSuccessful}" +
+                        "\n ${response.body()}")
+            }
+
+            override fun onFailure(call: Call<ApiResponse<TabUser>>, t: Throwable) {
+                Log.d("APITest", "requestRegister onFailure")
             }
         })
     }
@@ -145,4 +167,19 @@ data class test2 (
     val createdAt: String,
     val updatedAt: String,
     val isMe: Boolean
+)
+
+data class TabUser(
+    val id : Long? = null,
+    val name : String,
+    val email : String,
+    val phone : String,
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+)
+
+data class ApiResponse<T> (
+    val result : T,
+    val resultType : String,
+    val errorMessage : String? = null
 )
