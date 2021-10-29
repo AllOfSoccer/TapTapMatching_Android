@@ -1,5 +1,7 @@
 package com.example.taptapmatching.matchingMain
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import retrofit2.*
 import java.io.Serializable
 import java.time.LocalDate
@@ -17,8 +19,6 @@ interface Retrofit_Service {
     @Headers("tab-user-id: 2")
     @GET("${ListAPI.baseURL}/api/v1/tabtab/post/monthly?yyyyMM=202108")
     fun getList(): Call<test1>
-
-
 
     @POST("${ListAPI.baseURL}/api/v1/tabtab/user/add")
     fun requestRegister(@Header("secret") secret: String,
@@ -51,6 +51,7 @@ object ListClient {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 class MatchingDataSource {
 
     var list: MutableList<MatchingData> = mutableListOf()
@@ -80,7 +81,7 @@ class MatchingDataSource {
 
     fun registerId() {
         val call = ListClient.service
-        val reqBody = TabUser(null,"1","2","3")
+        val reqBody = TabUser(null,"1","2","3","secret")
 
         call.requestRegister(secret = "testgogo", req = reqBody).enqueue(object: Callback<ApiResponse<TabUser>> {
 
@@ -174,6 +175,7 @@ data class TabUser(
     val name : String,
     val email : String,
     val phone : String,
+    val secret: String,
     val createdAt: String? = null,
     val updatedAt: String? = null,
 )
