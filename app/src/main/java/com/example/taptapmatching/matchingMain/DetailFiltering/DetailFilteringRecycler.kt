@@ -17,14 +17,18 @@ class DetailFilteringRecycler {
 
     var type: MatchingFilterRecycler.FilterType? = null
 
-    fun loadData(): MutableList<String> {
+    fun loadData(type: MatchingFilterRecycler.FilterType): MutableList<String> {
         var result: MutableList<String> = mutableListOf() // 컬렉션을 선언
 
-        result.add("서울")
-        result.add("경기-북부")
-        result.add("경기-남부")
-        result.add("인천,부천")
-        result.add("기타지")
+        when {
+            MatchingFilterRecycler.FilterType.LOCATION == type -> result = mutableListOf("서울", "경기-북부", "경기-남부", "인천,부천", "기타지")
+            MatchingFilterRecycler.FilterType.TIME == type -> result = mutableListOf("1", "2", "3")
+            MatchingFilterRecycler.FilterType.MATCH == type -> result = mutableListOf("서울", "경기-북부", "경기-남부", "인천,부천", "기타지")
+            MatchingFilterRecycler.FilterType.PARTICIPATE == type -> result = mutableListOf("서울", "경기-북부", "경기-남부", "인천,부천", "기타지")
+            MatchingFilterRecycler.FilterType.LEVEL == type -> result = mutableListOf("서울", "경기-북부", "경기-남부", "인천,부천", "기타지")
+            MatchingFilterRecycler.FilterType.TEMP == type -> result = mutableListOf("서울", "경기-북부", "경기-남부", "인천,부천", "기타지")
+            else -> result = mutableListOf()
+        }
 
         return result
     }

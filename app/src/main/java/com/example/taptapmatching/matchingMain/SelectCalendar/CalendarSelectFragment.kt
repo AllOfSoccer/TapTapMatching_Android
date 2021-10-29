@@ -54,7 +54,7 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
 
     fun setupApplySelectedDates() {
         binding.applySelectedDatesLayouts.setOnClickListener {
-            Log.d("선택된 날짜 프린트", "${this.selectedDates}")
+            Log.d("선택된 날짜 프린", "${this.selectedDates}")
         }
     }
 

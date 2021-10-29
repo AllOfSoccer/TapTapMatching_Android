@@ -45,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         binding.matchingListButton.setOnClickListener {
             startActivityForResult(mathchingListIntent, 96)
         }
+
+        val registeIdIntent = Intent(this, RegisterIdActivity::class.java)
+
+        binding.registerIdButton.setOnClickListener {
+            startActivityForResult(registeIdIntent, 101)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

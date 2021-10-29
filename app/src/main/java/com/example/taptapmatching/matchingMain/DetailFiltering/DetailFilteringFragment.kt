@@ -23,12 +23,10 @@ interface  DetailFilteringFragementDelegate {
     fun applyFilterList(list: MutableSet<String>)
 }
 
-class DetailFilteringFragment : BottomSheetDialogFragment() {
+class DetailFilteringFragment(private var type: MatchingFilterRecycler.FilterType) : BottomSheetDialogFragment() {
 
     private var _binding: FragmentDetailFilteringBinding? = null
     private val binding get() = _binding!!
-
-    var type: MatchingFilterRecycler.FilterType? = null
 
     var delegate: DetailFilteringFragementDelegate? = null
     var adapter = DetailFilteringRecycler.CustomAdapter()
@@ -48,9 +46,8 @@ class DetailFilteringFragment : BottomSheetDialogFragment() {
 
     fun setupRecyclerView() {
         var filterRecycler = DetailFilteringRecycler()
-        val data: MutableList<String> = filterRecycler.loadData()
+        val data: MutableList<String> = filterRecycler.loadData(this.type)
         adapter.listData = data
-        filterRecycler.type = this.type
 
         binding.recyclerView2.adapter = adapter
         binding.recyclerView2.layoutManager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
