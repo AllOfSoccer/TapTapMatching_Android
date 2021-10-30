@@ -24,5 +24,9 @@ class RegisterIdActivity : AppCompatActivity() {
         this.binding.fixButton.setOnClickListener {
             MatchingDataSource.shared.requestFix()
         }
+
+        this.binding.requestUserDetailButton.setOnClickListener {
+            MatchingDataSource.shared.requestUserDetail()
+        }
     }
 }

@@ -29,6 +29,11 @@ interface Retrofit_Service {
     fun requestFixRegister(@Header("secret") secret: String,
                            @Body req: UserFix
     ): Call<ApiResponse<UserFix>>
+
+    @GET("${ListAPI.baseURL}/api/v1/tabtab/user/{id}") //id도 넣어아햠.
+    fun requestUserDetailInfo(@Header("secret") secret: String,
+                              @Path("id") id: Int
+    ): Call<ApiResponse<UserDetail>>
 }
 
 enum class Gender {
@@ -64,6 +69,7 @@ class MatchingDataSource {
         val shared = MatchingDataSource()
     }
 
+    //게시글 조
     fun getData(myCallback: (callBackValue: MutableList<MatchingData>) -> Unit) {
         val call = ListClient.service
         var resultValue: MutableList<MatchingData> = mutableListOf()
@@ -83,11 +89,12 @@ class MatchingDataSource {
         })
     }
 
+    // 회원가
     fun registerId() {
         val call = ListClient.service
-        val reqBody = TabUser(1001,"1","2","3")
+        val reqBody = TabUser( id=null,"1","2","3")
 
-        call.requestRegister(secret = "testgogo", req = reqBody).enqueue(object: Callback<ApiResponse<TabUser>> {
+        call.requestRegister(secret = "testgogo2", req = reqBody).enqueue(object: Callback<ApiResponse<TabUser>> {
 
             override fun onResponse(
                 call: Call<ApiResponse<TabUser>>,
@@ -103,9 +110,10 @@ class MatchingDataSource {
         })
     }
 
+    //회원정보 수
     fun requestFix() {
         val call = ListClient.service
-        val reqBody = UserFix(5, "z", "z", "z", 1001, "z", "z", "z", "z", 5, "z")
+        val reqBody = UserFix(36,5, "z", "z", "z", "z", "z", "z", "z", 5, "z")
 
         call.requestFixRegister(secret = "testgogo", req = reqBody).enqueue(object: Callback<ApiResponse<UserFix>> {
 
@@ -114,7 +122,11 @@ class MatchingDataSource {
                 response: Response<ApiResponse<UserFix>>
             ) {
                 Log.d("APITest", "requestTest fix onResponse ${response.isSuccessful}" +
-                        "\n ${response.body()}")
+                        "\n ${response.body()} ${response.headers()}" +
+                    "\n ${response.body()?.errorMessage} ${response.headers()}"
+
+
+                )
             }
 
             override fun onFailure(call: Call<ApiResponse<UserFix>>, t: Throwable) {
@@ -122,6 +134,27 @@ class MatchingDataSource {
             }
         })
 
+    }
+
+    //회원 조회
+    fun requestUserDetail() {
+        val call = ListClient.service
+        val reqBody = UserDetail(1, "z", "z", "z", 36, "z", "z", "z","z",5, "z")
+
+        call.requestUserDetailInfo(secret = "testgogo", id = 36).enqueue(object: Callback<ApiResponse<UserDetail>> {
+
+            override fun onResponse(
+                call: Call<ApiResponse<UserDetail>>,
+                response: Response<ApiResponse<UserDetail>>
+            ) {
+                Log.d("APITest", "requestTest UserDetail onResponse ${response.isSuccessful}" +
+                        "\n ${response.body()} ${response.headers()}")
+            }
+
+            override fun onFailure(call: Call<ApiResponse<UserDetail>>, t: Throwable) {
+                Log.d("APITest", "requestTest UserDetail onFailure")
+            }
+        })
     }
 
     fun convert(list: MutableList<test2>?): MutableList<MatchingData> {
@@ -205,14 +238,28 @@ data class TabUser(
 )
 
 data class UserFix(
+    val id: Int,
     val ageRange : Int,
+    val displayName: String,
+    val displayPhone: String,
+    val email: String,
+    val introduction: String,
+    val name: String,
+    val phone: String,
+    val profileImgUrl: String,
+    val skillLevel: Int,
+    val teamIds: String,
+)
+
+data class UserDetail(
+    val ageRange: Int,
     val displayName: String,
     val displayPhone: String,
     val email: String,
     val id: Int,
     val introduction: String,
     val name: String,
-    val phone: String,
+    val phone : String,
     val profileImgUrl: String,
     val skillLevel: Int,
     val teamIds: String,
