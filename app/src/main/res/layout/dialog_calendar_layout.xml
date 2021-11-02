@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:background="@drawable/radius_selector"
         android:id="@+id/dialogWeakDay"
         android:layout_width="38dp"
         android:layout_height="30dp"

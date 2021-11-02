@@ -112,18 +112,17 @@ public class DialogCalendarRecycler {
             holder.setMemo(currentDate)
 
             holder.binding.root.setOnClickListener {
+                it.setSelected(!it.isSelected)
+
                 storeListData.add(currentDate)
                 Log.d("isExist", "${this.delegate}")
                 this.delegate?.didSelect(storeListData) //선택완료 되었을대
 
                 if (it.isSelected == false) {
-                    holder.binding.dialogWeakDay.setBackgroundColor(Color.YELLOW)
+                    holder.binding.dialogWeakDay.setTextColor(Color.BLACK)
                 } else {
-                    holder.binding.dialogWeakDay.setBackgroundColor(Color.WHITE)
+                    holder.binding.dialogWeakDay.setTextColor(Color.WHITE)
                 }
-
-                it.setSelected(!it.isSelected)
-                holder.binding.dialogWeakDay.isSelected
             }
         }
     }
