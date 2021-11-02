@@ -16,9 +16,8 @@ class ListAPI {
 
 
 interface Retrofit_Service {
-    @Headers("tab-user-id: 2")
-    @GET("${ListAPI.baseURL}/api/v1/tabtab/post/monthly?yyyyMM=202108")
-    fun getList(): Call<test1>
+    @GET("${ListAPI.baseURL}/api/v1/tabtab/post/monthly")
+    fun getList(@Header("tab-user-id") id: Int, @Query("yyyyMM") yyyyMM: String): Call<test1>
 
     @POST("${ListAPI.baseURL}/api/v1/tabtab/user/add")
     fun requestRegister(@Header("secret") secret: String,
@@ -74,17 +73,18 @@ class MatchingDataSource {
         val call = ListClient.service
         var resultValue: MutableList<MatchingData> = mutableListOf()
 
-        call.getList().enqueue(object: Callback<test1> {
+        call.getList(id = 36, yyyyMM = "202108").enqueue(object: Callback<test1> {
+
             override fun onResponse(call: Call<test1>, response: Response<test1>) {
                 val result = response.body()?.result?.toMutableList()
                 var temp = convert(result)
                 myCallback.invoke(temp)
-                Log.d("APITest", "${temp}")
+                Log.d("APITest", "zzzzzzzz ${temp}, ${response.body()}, ${response.headers()}")
             }
 
             override fun onFailure(call: Call<test1>, t: Throwable) {
                 myCallback.invoke(MatchingDataSource.shared.list)
-                Log.d("APITest", "failure")
+                Log.d("APITest", "failure ${t}")
             }
         })
     }
@@ -173,24 +173,12 @@ class MatchingDataSource {
         val temp3 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
         val temp4 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
         val temp5 = MatchingData(LocalDate.now(), "실패한 경우 기본값으로 세팅된 정보", 6, Gender.FEMALE, "토토", true, true)
-        val temp6 = MatchingData(LocalDate.now(), "용산 더 베이스6", 6, Gender.FEMALE, "토토", true, true)
-        val temp7 = MatchingData(LocalDate.now(), "용산 더 베이스7", 6, Gender.FEMALE, "토토", true, true)
-        val temp8 = MatchingData(LocalDate.now(), "용산 더 베이스8", 6, Gender.FEMALE, "토토", true, true)
-        val temp9 = MatchingData(LocalDate.now(), "용산 더 베이스9", 6, Gender.FEMALE, "토토", true, true)
-        val temp10 = MatchingData(LocalDate.now(), "용산 더 베이스10", 6, Gender.FEMALE, "토토", true, true)
-        val temp11 = MatchingData(LocalDate.now(), "용산 더 베이스11", 6, Gender.FEMALE, "토토", true, true)
 
         result.add(temp)
         result.add(temp2)
         result.add(temp3)
         result.add(temp4)
         result.add(temp5)
-        result.add(temp6)
-        result.add(temp7)
-        result.add(temp8)
-        result.add(temp9)
-        result.add(temp10)
-        result.add(temp11)
 
         list = result
     }
