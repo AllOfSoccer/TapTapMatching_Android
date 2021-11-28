@@ -10,12 +10,14 @@
         android:layout_height="match_parent"
         android:background="#F6F4F4">
 
-        <Button
+        <ImageButton
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:backgroundTint="#F3EEEE"
+            android:src="@drawable/caretleftreal"
             android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,16 +29,20 @@
             android:layout_marginTop="20dp"
             android:text="팀모집 글쓰기"
             android:textColor="#040303"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <ImageButton
             android:id="@+id/beforeMatchInfoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="10dp"
+            android:backgroundTint="#F3EFEF"
+            android:src="@drawable/beforewiringcall"
             android:text="이전 글 불러오기"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

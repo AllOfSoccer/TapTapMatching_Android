@@ -7,13 +7,14 @@
     android:background="#FFFFFF"
     tools:context=".MakeMatchingRoom.MakeSecondTeamMatchingRoomActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/button15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginTop="62dp"
-        android:text="Button"
+        android:backgroundTint="#EDE9E9"
+        android:src="@drawable/caretleftreal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
