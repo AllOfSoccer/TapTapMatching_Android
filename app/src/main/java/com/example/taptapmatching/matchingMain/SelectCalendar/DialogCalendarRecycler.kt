@@ -114,9 +114,7 @@ public class DialogCalendarRecycler {
             holder.binding.root.setOnClickListener {
                 it.setSelected(!it.isSelected)
 
-                storeListData.add(currentDate)
-                Log.d("isExist", "${this.delegate}")
-                this.delegate?.didSelect(storeListData) //선택완료 되었을대
+                this.delegate?.didSelect(currentDate) //선택완료 되었을대
 
                 if (it.isSelected == false) {
                     holder.binding.dialogWeakDay.setTextColor(Color.BLACK)

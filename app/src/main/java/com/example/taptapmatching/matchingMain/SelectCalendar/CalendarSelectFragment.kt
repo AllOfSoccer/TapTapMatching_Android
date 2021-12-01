@@ -20,7 +20,7 @@ import java.time.LocalDate
 import java.time.Month
 
 interface CalendarDialogDelegate {
-    fun didSelect(dates: MutableSet<DialogCalendarRecycler.SmallDate>)
+    fun didSelect(dates: DialogCalendarRecycler.SmallDate)
 }
 
 interface MainCalendarCustomAdapterDelegte {
@@ -159,8 +159,14 @@ class CalendarSelectFragment() : DialogFragment(), CalendarDialogDelegate, MainC
         }
     }
 
-    override fun didSelect(dates: MutableSet<DialogCalendarRecycler.SmallDate>) {
-        this.selectedDates = dates
+    override fun didSelect(dates: DialogCalendarRecycler.SmallDate) {
+        if (selectedDates.contains(dates) == true) {
+            selectedDates.remove(dates)
+        } else {
+            selectedDates.add(dates)
+        }
+
+        this.binding.applySelectedDatesTextView.text = "선택 적용하기 (${this.selectedDates.count()})"
 
         Log.d("didSelectDates1", "${this.selectedDates}")
     }
