@@ -100,19 +100,14 @@ class MatchingFilterRecycler {
                     holder.binding.root.run {
                         this.isSelected = !this.isSelected
 
-                        Log.d("onBindViewHolderCheck", "${this.isSelected}")
-
                         if (this.isSelected == true) {
-                            this.setBackgroundColor(0x000000)
+                            this.setBackgroundColor(0xEC5F5F)
                         } else {
-                            this.setBackgroundColor(0xFFFFFF)
+                            this.setBackgroundColor(0xF6F7FA)
                         }
-
-                        Log.d("onBindViewHolderCheckColor", "${this.getBackground()}")
                     }
 
                     val pos = holder.getAdapterPosition()
-                    this.notifyItemChanged(pos)
                     this.delegate?.didSelectFilterType(getFilterType(pos))
                 }
             }
