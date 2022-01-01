@@ -15,6 +15,7 @@ interface  MatchingFilterRecyclerDelegate {
 class MatchingFilterRecycler {
 
     public enum class FilterType(val title: String) {
+        RESTORE("필터 되돌리"),
         LOCATION("장소"),
         TIME("시간대"),
         MATCH("경기"),
@@ -23,7 +24,8 @@ class MatchingFilterRecycler {
         TEMP("테스트");
     }
 
-    val filterList: Array<String> = arrayOf(FilterType.LOCATION.title,
+    val filterList: Array<String> = arrayOf(FilterType.RESTORE.title,
+                                            FilterType.LOCATION.title,
                                             FilterType.TIME.title,
                                             FilterType.MATCH.title,
                                             FilterType.PARTICIPATE.title,
@@ -41,20 +43,43 @@ class MatchingFilterRecycler {
         return result
     }
 
-    class CustomAdapter: RecyclerView.Adapter<Holder>() {
+    class CustomAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+        val restoreFilter: Int = 0
+        val default: Int = 1
 
         var listData = mutableListOf<FilterInfo>()
         var delegate: MatchingFilterRecyclerDelegate? = null
 
+        override fun getItemViewType(position: Int): Int {
+            if (getFilterType(position) == FilterType.RESTORE) {
+                return restoreFilter
+            } else {
+                return  default
+            }
+        }
+
         // 한 화면에 그려지는 아이템 개수만큼 레이아웃 생
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-            val binding = FragmentSmallFilteringBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent, false)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            Log.d("onCreateViewHolder222", "${viewType}")
 
-            delegate = parent.context as MatchingFilterRecyclerDelegate
+            if (viewType == restoreFilter) {
+                val binding = FragmentSmallFilteringBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent, false)
 
-            return Holder(binding)
+                delegate = parent.context as MatchingFilterRecyclerDelegate
+
+                return FilterRestoreHolder(binding)
+            } else {
+                val binding = FragmentSmallFilteringBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent, false)
+
+                delegate = parent.context as MatchingFilterRecyclerDelegate
+
+                return Holder(binding)
+            }
         }
 
         // 목록의 총 데이터의 개수
@@ -63,27 +88,45 @@ class MatchingFilterRecycler {
         }
 
         // 생성된 뷰 홀더를 화면에 보여줌
-        override fun onBindViewHolder(holder: Holder, position: Int) {
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val memo = listData.get(position)
-            holder.setMemo(memo)
 
-            holder.binding.root.setOnClickListener {
-                holder.binding.root.run {
-                    isSelected = !isSelected
+            if (holder is Holder) {
+                holder.setMemo(memo)
+
+                holder.binding.root.setOnClickListener {
+                    holder.binding.root.run {
+                        isSelected = !isSelected
+                    }
+
+                    val pos = holder.getAdapterPosition()
+                    this.delegate?.didSelectFilterType(getFilterType(pos))
                 }
-
-                val pos = holder.getAdapterPosition()
-                this.delegate?.didSelectFilterType(getFilterType(pos))
             }
+
+            if (holder is FilterRestoreHolder) {
+                holder.setMemo(memo)
+
+                holder.binding.root.setOnClickListener {
+                    holder.binding.root.run {
+                        isSelected = !isSelected
+                    }
+
+                    val pos = holder.getAdapterPosition()
+                    this.delegate?.didSelectFilterType(getFilterType(pos))
+                }
+            }
+
         }
 
         fun getFilterType(position: Int) = when(position) {
-            0 -> FilterType.LOCATION
-            1 -> FilterType.TIME
-            2 -> FilterType.MATCH
-            3 -> FilterType.PARTICIPATE
-            4 -> FilterType.LEVEL
-            5 -> FilterType.TEMP
+            0 -> FilterType.RESTORE
+            1 -> FilterType.LOCATION
+            2 -> FilterType.TIME
+            3 -> FilterType.MATCH
+            4 -> FilterType.PARTICIPATE
+            5 -> FilterType.LEVEL
+            6 -> FilterType.TEMP
             else -> FilterType.TEMP
         }
     }
@@ -94,6 +137,12 @@ class MatchingFilterRecycler {
             binding.textView5.text = "${filterInfo.title}"
         }
 
+    }
+
+    class FilterRestoreHolder(val binding: FragmentSmallFilteringBinding): RecyclerView.ViewHolder(binding.root) {
+        fun setMemo(filterInfo: FilterInfo) {
+            binding.textView5.text = "zzzzzzzzz"
+        }
     }
 
     data class FilterInfo(var title: String, var isSelected: Boolean)
