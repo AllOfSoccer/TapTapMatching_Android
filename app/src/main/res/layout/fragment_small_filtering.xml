@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutid"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/rectange_r4"
-    android:backgroundTint="#EC5F5F"
+    android:backgroundTint="#F6F7FA"
     tools:context=".matchingFilter.smallFilteringFragment">
 
     <TextView
