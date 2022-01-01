@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taptapmatching.databinding.FragmentRestorefilteringBinding
 import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
 
 interface  MatchingFilterRecyclerDelegate {
@@ -64,7 +65,7 @@ class MatchingFilterRecycler {
             Log.d("onCreateViewHolder222", "${viewType}")
 
             if (viewType == restoreFilter) {
-                val binding = FragmentSmallFilteringBinding.inflate(
+                val binding = FragmentRestorefilteringBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false)
 
@@ -105,8 +106,6 @@ class MatchingFilterRecycler {
             }
 
             if (holder is FilterRestoreHolder) {
-                holder.setMemo(memo)
-
                 holder.binding.root.setOnClickListener {
                     holder.binding.root.run {
                         isSelected = !isSelected
@@ -139,10 +138,8 @@ class MatchingFilterRecycler {
 
     }
 
-    class FilterRestoreHolder(val binding: FragmentSmallFilteringBinding): RecyclerView.ViewHolder(binding.root) {
-        fun setMemo(filterInfo: FilterInfo) {
-            binding.textView5.text = "zzzzzzzzz"
-        }
+    class FilterRestoreHolder(val binding: FragmentRestorefilteringBinding): RecyclerView.ViewHolder(binding.root) {
+
     }
 
     data class FilterInfo(var title: String, var isSelected: Boolean)
