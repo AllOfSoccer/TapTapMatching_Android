@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/rectange_r4"
-    android:backgroundTint="@color/selector_filter_bg"
+    android:backgroundTint="#EC5F5F"
     tools:context=".matchingFilter.smallFilteringFragment">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginStart="5dp"
         android:layout_weight="0"
         android:text="TextView"
-        android:textColor="#0C0101" />
+        android:textColor="#FFFFFF" />
 
     <ImageView
         android:id="@+id/imageView2"
