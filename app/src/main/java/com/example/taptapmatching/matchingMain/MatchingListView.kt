@@ -223,9 +223,14 @@ class MatchingListView : AppCompatActivity(), MatchingFilterRecyclerDelegate, De
         // 이 타이밍에 하단 필터를 보여준다.
         Log.d("didSelectFilterType", "${type}")
 
-        val detailFilteringFragment = DetailFilteringFragment(type)
-        detailFilteringFragment.delegate = this
-        detailFilteringFragment.show(supportFragmentManager, "DetailFilteringFragment")
+        if (type == MatchingFilterRecycler.FilterType.RESTORE) {
+            Log.d("didSelectFilterType", "${type}, 선택된 filter를 초기화 시킨다.")
+        } else {
+            Log.d("didSelectFilterType", "${type}")
+            val detailFilteringFragment = DetailFilteringFragment(type)
+            detailFilteringFragment.delegate = this
+            detailFilteringFragment.show(supportFragmentManager, "DetailFilteringFragment")
+        }
     }
 
     // Delegate 함수
