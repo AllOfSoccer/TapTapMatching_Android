@@ -11,14 +11,13 @@
         android:background="#F6F4F4">
 
         <ImageButton
-            android:id="@+id/button4"
+            android:id="@+id/backButtonInTeamMatchingWriting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="#F3EEEE"
             android:src="@drawable/caretleftreal"
-            android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

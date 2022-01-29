@@ -39,8 +39,11 @@ class recycler_calendar_fragment(private var position: Int) : Fragment() {
 
         adapter.listData = data
 
-        val parentFragment = this.parentFragmentManager.fragments.filterIsInstance<CalendarDialogDelegate>().first()
-        adapter.delegate = parentFragment
+        this.parentFragmentManager.fragments.forEach {
+            if (it is CalendarDialogDelegate) {
+                adapter.delegate = it
+            }
+        }
 
         binding.calendarSelectRecyclerView.adapter = adapter
 

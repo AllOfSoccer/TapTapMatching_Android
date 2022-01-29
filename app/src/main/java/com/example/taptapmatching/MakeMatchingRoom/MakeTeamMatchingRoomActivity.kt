@@ -45,6 +45,9 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        this.binding.backButtonInTeamMatchingWriting.setOnClickListener {
+            this.finish()
+        }
         this.setContentView(binding.root)
         this.setupButtons()
         this.setupDataAndTimeButtonListener()
@@ -56,8 +59,8 @@ class MakeTeamMatchingRoomActivity : AppCompatActivity() {
 
     fun setupDataAndTimeButtonListener() {
         binding.dateAndTimeSelectButton.setOnClickListener {
-            val calendarSelectFragment = CalendarSelectFragment()
-            calendarSelectFragment.show(supportFragmentManager, "CalendarSelectFragment")
+            val calendarSelectFragment = WriteMatchingTeamCalendar()
+            calendarSelectFragment.show(supportFragmentManager, "WriteMatchingTeamCalendar")
         }
     }
 
