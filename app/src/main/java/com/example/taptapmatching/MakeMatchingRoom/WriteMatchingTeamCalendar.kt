@@ -1,5 +1,6 @@
 package com.example.taptapmatching.MakeMatchingRoom
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +18,11 @@ import com.example.taptapmatching.databinding.FragmentSmallFilteringBinding
 import com.example.taptapmatching.databinding.WriteTeamMatchingCalendarBinding
 import com.example.taptapmatching.matchingMain.SelectCalendar.DialogCalendarRecycler
 import com.example.taptapmatching.matchingMain.SelectCalendar.recycler_calendar_fragment
+import kotlinx.coroutines.internal.artificialFrame
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Month
+import java.util.*
 
 interface CalendarDialogDelegate {
     fun didSelect(dates: DialogCalendarRecycler.SmallDate)
@@ -66,6 +70,19 @@ class WriteMatchingTeamCalendar() : DialogFragment(), CalendarDialogDelegate, Ma
 
         this.binding.backButton.setOnClickListener {
             this.changeShowingMonth(-1)
+        }
+
+        this.binding.timeButton.setOnClickListener {
+            val cal = Calendar.getInstance()
+
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+
+                this.binding.timeButton.text = SimpleDateFormat("HH:mm").format(cal.time)
+            }
+
+            TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
     }
 
