@@ -82,7 +82,8 @@ class WriteMatchingTeamCalendar() : DialogFragment(), CalendarDialogDelegate, Ma
                 this.binding.timeButton.text = SimpleDateFormat("HH:mm").format(cal.time)
             }
 
-            TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            val timePicker = TimePickerDialog(context, 3, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
+            timePicker.show()
         }
     }
 
